@@ -1,34 +1,44 @@
 Design 1
 ========
-![image of design 1](https://github.gatech.edu/raw/gt-omscs-se-2016fall/6300Fall16Team61/ethomas32/GroupProject/Design-Individual/ethomas32/design.jpg?token=AAAsnZusJFpZmTS3BtbaoFWQ08_SmLtHks5X9tTiwA%3D%3D)
+![image of design 1](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Design-Individual/ethomas32/design.png)
 
 * Pros
     * Simple and concise.
+    * Right cardinality between classes
 * Cons
     * Ties the quantity and checked off to the item itself
+    * Adding item to list was not necessary in the shopper
+    * No attributes in item type
+    * Doesn't keep track of the selected list
 
 Design 2
 ========
-![image of design 2](https://github.gatech.edu/raw/gt-omscs-se-2016fall/6300Fall16Team61/ethomas32/GroupProject/Design-Individual/gth836x/design.jpg?token=AAAsnSZwo1IlCzPoju6igz50rwJkfCHfks5X9tU9wA%3D%3D)
+![image of design 2](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Design-Individual/gth836x/design.png)
 
 * Pros
-    * Item 2a
+    * Simple and concise
+    * Has most main elements
+    * Added a ListItem class to handle quantity and checkin off
 * Cons
-    * Item 2b
+    * Doesn't have a manager
+    * Doesn't specify arguments for methods
+    * Ties the quantity to the item itself
 
 Design 3
 ========
-![image of design 3](https://github.gatech.edu/raw/gt-omscs-se-2016fall/6300Fall16Team61/ethomas32/GroupProject/Design-Individual/samid3/GroceryListManager.jpg?token=AAAsnSO5WRcwgdGCG71jwldBDbuYV_Vwks5X9tVcwA%3D%3D)
+![image of design 3](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Design-Individual/samid3/design.png)
 
 * Pros
-    * Item 2a
+    * Very detailed
+    * Has LineItem to handle count and checked off
 * Cons
-    * Item 2b
+    * Diagram is too busy too early
+    * Added more interfaces than necessary
 
 
 Team Design
 ===========
-![image of team design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/development-bobby/GroupProject/Design-Team/design-team.png)
+![image of team design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Design-Team/design-team.png)
 
 The team design is a culmination of the individual designs above. We combined the aspects of all three individual designs that we felt were most correct, adding, removing, and tweaking the individual designs to create a simple, complete team design.
 
