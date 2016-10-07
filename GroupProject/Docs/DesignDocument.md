@@ -36,8 +36,6 @@ The application will only be deployed to Android phones and simulators. We will 
 This shows how the the application components are connected together. The **GroceryListManager** is the application component and contains the **GroceryLists**, **Items**, and **ItemTypes** components. 
 The only outside component is the **Database** which is connected to the **GroceryListManager** via two interfaces: **Search Database** and **Manage Database**. The **GroceryListManager** provides two interfaces: **ItemSearch** and **ManageLists**.
 
-Bobby to insert component diagram if necessary.
-
 ### 2.2 Deployment Diagram
 
 *This section should describe how the different components will be deployed on actual hardware devices. Similar to the previous subsection, this diagram may be unnecessary for simple systems; in these cases, simply state so and concisely state why.*
