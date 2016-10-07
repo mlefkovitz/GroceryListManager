@@ -48,6 +48,7 @@ This shows the user flow diagram for the views of the application. Each view has
 
 Here are some sample wireframes corresponding to the views in the user flow diagram:
 
+
 | Home Screen | Add New List Modal |
 | --- | --- |
 | ![home screen](./home-screen.png) | ![add new list modal](./home-screen_add-list_name.png) |
