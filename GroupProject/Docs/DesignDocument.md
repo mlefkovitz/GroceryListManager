@@ -2,7 +2,7 @@
 
 *This is the template for your design document. The parts in italics are concise explanations of what should go in the corresponding sections and should not appear in the final document.*
 
-**Author**: \<person or team name\>
+**Author**: Team61
 
 ## 1 Design Considerations
 
@@ -12,13 +12,19 @@
 
 *Describe any assumption, background, or dependencies of the software, its use, the operational environment, or significant project issues.*
 
+Since this is an Android application, we assume that the application will only be used on Android phones and simulators. The application will only have one user per device, will store data locally on the device, and will not communicate at all with other devices/servers; it will be an isolated single-user application.
+
 ### 1.2 Constraints
 
 *Describe any constraints on the system that have a significant impact on the design of the system.*
 
+As an Android application, this will have to be compliant with the Android OS.
+
 ### 1.3 System Environment
 
 *Describe the hardware and software that the system must operate in and interact with.*
+
+The application will only be deployed to Android phones and simulators. We will have to determine the appropriate mininum SDK version that is supported by the application. The application will be developed in Android Studio and built with gradle.
 
 ## 2 Architectural Design
 
@@ -26,11 +32,15 @@
 
 ### 2.1 Component Diagram
 
-*This section should provide and describe a diagram that shows the various components and how they are connected. This diagram shows the logical/functional components of the system, where each component represents a cluster of related functionality. In the case of simple systems, where there is a single component, this diagram may be unnecessary; in these cases, simply state so and concisely state why.*
+![image of design 1](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/component-diagram.png)
+This shows how the the application components are connected together. The **GroceryListManager** is the application component and contains the **GroceryLists**, **Items**, and **ItemTypes** components. 
+The only outside component is the **Database** which is connected to the **GroceryListManager** via two interfaces: **Search Database** and **Manage Database**. The **GroceryListManager** provides two interfaces: **ItemSearch** and **ManageLists**.
 
 ### 2.2 Deployment Diagram
 
 *This section should describe how the different components will be deployed on actual hardware devices. Similar to the previous subsection, this diagram may be unnecessary for simple systems; in these cases, simply state so and concisely state why.*
+
+Since this is an isolated single-user application, no deployment diagram is needed. The application will be built and deployed in its entirety to each phone/simulator that uses it via Android Studio. The APK built by Android Studio can also be shared via email to install the application on devices. Another deployment method, such as HockeyApp, may be considered as well.
 
 ## 3 Low-Level Design
 
@@ -40,10 +50,15 @@
 
 *In the case of an OO design, the internal structure of a software component would typically be expressed as a UML class diagram that represents the static class structure for the component and their relationships.*
 
+Bobby to insert UML from D1.
+
 ### 3.2 Other Diagrams
 
 *<u>Optionally</u>, you can decide to describe some dynamic aspects of your system using one or more behavioral diagrams, such as sequence and state diagrams.*
 
+Bobby to insert other diagrams if necessary (not likely).
+
 ## 4 User Interface Design
 *For GUI-based systems, this section should provide the specific format/layout of the user interface of the system (e.g., in the form of graphical mockups).*
 
+Bobby to insert wireframes/user flow diagrams.
