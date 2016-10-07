@@ -33,6 +33,7 @@ Since this is an isolated single-user application, no deployment diagram is need
 ### 3.1 Class Diagram
 
 ![image of team design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/design-team.png)
+This shows the UML Class Diagram that the team created for the first deliverable of the project.
 
 ### 3.2 Other Diagrams
 
@@ -41,5 +42,6 @@ The group determined that no other diagrams were necessary. Sections 2.1, 3.1, a
 ## 4 User Interface Design
 
 ![user flow diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/user-flow-diagram.png)
+This shows the user flow diagram for the views of the application. Each view has a bulleted list of actions that the user can perform from the view, and arrows are shown for actions that cause view transitions. A modal is a view within a view.
 
 [Download our interactive wireframe to see how views change and interact with each other.](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/interactive-wireframe.pdf)
