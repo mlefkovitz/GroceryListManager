@@ -67,4 +67,4 @@ Bobby to insert wireframes/user flow diagrams.
 
 ![user flow diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/development-bobby-d2/GroupProject/Docs/user-flow-diagram.png)
 
-[Check out our interactive wireframe](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/development-bobby-d2/GroupProject/Docs/interactive-wireframe.pdf)
+[Download our interactive wireframe to see how views change and interact with each other.](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/development-bobby-d2/GroupProject/Docs/interactive-wireframe.pdf)
