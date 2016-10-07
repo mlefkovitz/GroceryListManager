@@ -45,3 +45,23 @@ The group determined that no other diagrams were necessary. Sections 2.1, 3.1, a
 This shows the user flow diagram for the views of the application. Each view has a bulleted list of actions that the user can perform from the view, and arrows are shown for actions that cause view transitions. A modal is a view within a view.
 
 [Download our interactive wireframe to see how views change and interact with each other.](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/interactive-wireframe.pdf)
+
+Here are some sample wireframes corresponding to the views in the user flow diagram:
+
+[home screen](./home-screen.png)
+Home Screen
+
+[add new list modal](./home-screen_add-list_name.png)
+Add New List Modal
+
+[list view](./list.png)
+List View
+
+[search view](./item-search_matching-text.png)
+Search View
+
+[add existing item modal](./item-search_select_quantity.png)
+Add Exisiting Item Modal
+
+[add new item modal](./item-search_new-item_type_selected.png)
+Add New Item Modal
