@@ -49,12 +49,15 @@ This shows the user flow diagram for the views of the application. Each view has
 Here are some sample wireframes corresponding to the views in the user flow diagram:
 
 | Home Screen | Add New List Modal |
+| --- | --- |
 | ![home screen](./home-screen.png) | ![add new list modal](./home-screen_add-list_name.png) |
 
 
 | List View |
+| --- |
 | ![list view](./list.png) |
 
 
 | Search View | Add Exisiting Item Modal | Add New Item Modal |
+| --- | --- | --- |
 | ![search view](./item-search_matching-text.png) | ![add existing item modal](./item-search_select_quantity.png) | ![add new item modal](./item-search_new-item_type_selected.png) |
