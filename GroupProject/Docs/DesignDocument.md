@@ -32,11 +32,11 @@ Since this is an isolated single-user application, no deployment diagram is need
 
 ### 3.1 Class Diagram
 
-Bobby to insert UML from D1.
+![image of team design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/design-team.png)
 
 ### 3.2 Other Diagrams
 
-Bobby to insert other diagrams if necessary (not likely).
+The group determined that no other diagrams were necessary. Sections 2.1, 3.1, and 4 cover everything visually.
 
 ## 4 User Interface Design
 
