@@ -1,14 +1,13 @@
 #Extra Requirements
 
+**Author**:Team61
+
 These are in addition to the specific system requirements provided by Brad and Janet.
 
-##Non-Functional Requirements
-
-
-*Supplementary requirements (i.e., requirements that do not fit the use-case model, such as non-functional requirements). These can be provided as a simple list.*
+##1 Non-Functional Requirements
 
 - The Grocery List Manager shall be performant - each operation will have a response time under 1 second
-- The Grocery List Manager shall be capable on running on all Android devices after version 4.0.1
+- The Grocery List Manager shall be capable on running on all Android devices after version 4.4 (KitKat) / API 19.
 - The Grocery List Manager shall be high quality, with faults removed within 72 hours of discovery
 - The Grocery List Manager shall be high reliability, with a high mean time between failures (MTBF) >1 year 
 - The Grocery List Manager shall be highly recoverable, with mean time to recovery (MTTR) <2 minutes
