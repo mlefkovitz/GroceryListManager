@@ -14,7 +14,7 @@ As an Android application, this will have to be compliant with the Android OS.
 
 ### 1.3 System Environment
 
-The application will only be deployed to Android phones and simulators. We will have to determine the appropriate mininum SDK version that is supported by the application. The application will be developed in Android Studio and built with gradle.
+The application will only be deployed to Android phones and simulators. The application will be developed to support all Android devices after version 4.4 (KitKat) / API 19. The application will be developed in Android Studio and built with gradle.
 
 ## 2 Architectural Design
 

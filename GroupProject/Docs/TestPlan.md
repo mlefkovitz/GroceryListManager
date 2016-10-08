@@ -103,16 +103,14 @@ The following fields will be supported in the Excel Sheet as minimum:
 
 The following are industry default standard definitions for **Severity** and **Priority**. We have copied them as informational. We are planning on using them as a guideline.
 
-**Defect Severity(1) definition:**
+**Defect Severity<sup>[1](http://softwaretestingfundamentals.com/defect-severity/)</sup> definition:**
 
 - **Critical:** The defect affects critical functionality or critical data. It does not have a workaround. Example: Unsuccessful installation, complete failure of a feature.
 - **Major:** The defect affects major functionality or major data. It has a workaround but is not obvious and is difficult. Example: A feature is not functional from one module but the task is doable if 10 complicated indirect steps are followed in another module/s.
 - **Minor:** The defect affects minor functionality or non-critical data. It has an easy workaround. Example: A minor feature that is not functional in one module but the same task is easily doable from another module.
 - **Trivial:** The defect does not affect functionality or data. It does not even need a workaround. It does not impact productivity or efficiency. It is merely an inconvenience. Example: Petty layout discrepancies, spelling/grammatical errors.
 
-**(1)http://softwaretestingfundamentals.com/defect-severity/**
-
-**Defect Priority(2) definition:**
+**Defect Priority<sup>[2](http://softwaretestingfundamentals.com/defect-priority/)</sup> definition:**
 
 Defect Priority (Bug Priority) indicates the importance or urgency of fixing a defect. Though priority may be initially set by the Software Tester, it is usually finalized by the Project/Product Manager.
 Priority can be categorized into the following levels:
@@ -123,8 +121,6 @@ Priority can be categorized into the following levels:
 - **Low:** May or may not be fixed at all.
 
 Priority is also denoted as **P1** for Urgent, **P2** for High and so on.
-
-**(2)http://softwaretestingfundamentals.com/defect-priority/**
 
 
 
