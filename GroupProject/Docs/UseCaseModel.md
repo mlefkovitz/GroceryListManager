@@ -43,12 +43,12 @@
         - Must have at list one item in the list
     - Post-conditions: items are checked off
     - Scenarios: User is checking off items from his list.
-- Clear All Check-Off Items In List
+- Clear All Check-Off Marks In List
     - Requirements: Allow the user to clear all checked off items in the list
     - Pre-conditions: 
         - Must have a selected list
     - Post-conditions: All checked off items, if any, are cleared
-    - Scenarios: 
+    - Scenarios: Restore the list to an unchecked state
 - Create List
     - Requirements: Allow user to create a new list
     - Pre-conditions: None

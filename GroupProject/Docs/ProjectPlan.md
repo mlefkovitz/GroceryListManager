@@ -1,6 +1,6 @@
-# Project Plan -- Team 61
+# Project Plan
 
-
+**Author**:Team61
 
 ## 1 Introduction
 
@@ -97,7 +97,7 @@ Once Team61 agrees that the software meets all requirements, the project can be 
 
 **Activity name: Maintenance**
 
-The purpose of the 'Maintenance' process is to maintain the source code once it has been handed off and completed. There may be needs, later on down the road, to implement new features or possibly fix bugs that were not previously identified or arise form the implementation of new features.
+The purpose of the 'Maintenance' process is to maintain the source code once it has been handed off and completed. There may be needs, later on down the road, to implement new features or possibly fix bugs that were not previously identified or arise from the implementation of new features.
 
 **Activity description**
 

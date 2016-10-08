@@ -13,7 +13,6 @@ These are in addition to the specific system requirements provided by Brad and J
 - The Grocery List Manager shall be highly recoverable, with mean time to recovery (MTTR) <2 minutes
 - The Grocery List Manager shall be highly available as a local application with no dependence on internet connectivity
 - The Grocery List Manager shall be efficient, demanding low processor and memory consumption
-- The Grocery List Manager shall be effective at delivering value to Brad and Janet
 
  
 
