@@ -84,21 +84,21 @@ We will use an internal **Excel sheet** to track the bugs and their resolution. 
 
 The following fields will be supported in the Excel Sheet as minimum:
 
-  •  Item Number:
-  •  Date:
-  •  Phase of Testing:
-  •  Name of Originator:
-  •  Description:
-  •  Priority: P1-Urgent, P2-High, P3-Medium to P4 - low
-  •  Severity: S1- Critical, S2-Major, S3-Minor, S4-Trivial  
-  •  Resolution Description:
-  •  Name of Resolver:
-  •  Date of Resolution:
-  •  Verification Testing:
-  •  Name of Tester:
-  •  Date of Retest:
-  •  Software Version:
-  •  Status: Open,In_progress, Closed
+  -  Item Number:
+  -  Date:
+  -  Phase of Testing:
+  -  Name of Originator:
+  -  Description:
+  -  Priority: P1-Urgent, P2-High, P3-Medium to P4 - low
+  -  Severity: S1- Critical, S2-Major, S3-Minor, S4-Trivial  
+  -  Resolution Description:
+  -  Name of Resolver:
+  -  Date of Resolution:
+  -  Verification Testing:
+  -  Name of Tester:
+  -  Date of Retest:
+  -  Software Version:
+  -  Status: Open,In_progress, Closed
 
 
 The following are industry default standard definitions for **Severity** and **Priority**. We have copied them as informational. We are planning on using them as a guideline.
@@ -143,11 +143,15 @@ For the **System** and **Regression** testing we are leaning toward a manual tes
 |	Add Item to List with Item	|	Unit Test	|	Forbid user from adding the same item to the list twice	|	Test the addItemToList function	|	1. Select a List that already has ListItem Item 2. Add Item using the addItemToList function 3. Confirm that the expected error message appears	|	Error Message	|		|		|		|
 |	Add Item without selecting List	|	Unit Test	|	Forbid user from adding item to no list	|	Test the addItemToList function	|	1. Add Item using the addItemToList function 2. Confirm that the expected error message appears	|	Error Message	|		|		|		|
 |	Change Item Quantity	|	Unit Test	|	Change quantity of item	|	Test the changeItemQuantityInList function	|	1. Select a List that already has Item 2. Change quantity of the Item using the changeItemQuantityInList function 3. Check that a ListItem for Item exists on the List and that the quantity is expected	|	Item quantity is entered number	|		|		|		|
+|	Change Item Quantity without Item on List	|	Unit Test	|	Forbid user from changing the quantity of an item that doesn't exist on list	|	Test the changeItemQuantityInList function	|	1. Select a List without Item 2. Change quantity of Item from the list using the changeItemQuantityInList function 3. Confirm that the expected error message appears	|	Error Message	|		|		|		|
 |	Delete Item from List	|	Unit Test	|	Delete Item	|	Test the deleteItemFromList function	|	1. Select a List that already has Item 2. Delete Item from the list using the deleteItemFromList function 3. Confirm that the item is no longer on the list	|	item not present on list	|		|		|		|
+|	Delete Item from no List	|	Unit Test	|	Forbid user from deleting item to no list	|	Test the deleteItemFromList function	|	1. Delete Item using the deleteItemFromList function 2. Confirm that the expected error message appears	|	Error Message	|		|		|		|
+|	Delete Item that doesn't exist	|	Unit Test	|	Forbid user from deleting item that doesn't exist on list	|	Test the deleteItemFromList function	|	1. Select a List without Item 2. Delete Item from the list using the deleteItemFromList function 3. Confirm that the expected error message appears	|	Error Message	|		|		|		|
 |	Check Item on list	|	Unit Test	|	Check the Item	|	Test the checkItemInList function	|	1. Select a List that already has ListItem 2. Check the ListItem using the checkItemInList function 3. Confirm that the ListItem is checked	|	ListItem will have checked = true	|		|		|		|
 |	Uncheck all Items - one item	|	Unit Test	|	Uncheck all Items	|	Test the clearAllCheckedItemsInList function	|	1. Select a List that already has 1 ListItem 2. Uncheck the ListItem using the clearAllCheckedItemsInList function 3. Confirm that the Listitem is unchecked	|	ListItem will have checked = false	|		|		|		|
 |	Uncheck all Items - multiple items	|	Unit Test	|	Uncheck all Items	|	Test the clearAllCheckedItemsInList function	|	1. Select a List that already has multiple ListItems 2. Uncheck the ListItems using the clearAllCheckedItemsInList function 3. Confirm that the ListItems are unchecked	|	All ListItems will have checked = false	|		|		|		|
-|	saveList	|	Unit Test	|	Save the list to the database	|	Test the saveList function	|		|		|		|		|		|
+|	saveList	|	Unit Test	|	Save the list to the database	|	Test the saveList function	|	1. Select a List 2. Save List using saveList function 3. Check that the list has been saved to the database	|	List Saved	|		|		|		|
+|	saveItem	|	Unit Test	|	Save a new Item to the database	|	Test saveItem function	|	1. Select an Item 2. Save Item using saveItem function 3. Check that the Item has been saved to the database	|	New Item exists in the database	|		|		|		|
 |	Create new Item	|	Unit Test	|	Create new Item in an ItemType	|	Test the createNewItemInstance function	|	1. Add new Item to an ItemType using the createNewItemInstance function 2. Check that the Item exists in the Items table	|	New Item exists	|		|		|		|
 |	Create a new List 	|	Unit Test	|	Create a new List	|	Test the createList function	|	1. Create new List	|	List exists	|		|		|		|
 |	Delete List	|	Unit Test	|	Delete a List	|	Test the deleteList function	|	1. List has already been created 2. Delete List	|	List does not exist	|		|		|		|
@@ -156,4 +160,6 @@ For the **System** and **Regression** testing we are leaning toward a manual tes
 |	Search for Item	|	Unit Test	|	Search for a specific item	|	Test the searchItemsByName function	|	1. Search for Item by Name	|	Item exists	|		|		|		|
 |	Add Item to List	|	Integration Test	|	Use searchItemsByName to find Item and add it to the list	|	Run the addItemToList function from the searchItemsByName function	|	1. Select a List 2. Search for Item using the searchItemsByName function 3. Add Item to List using the addItemToList function 4. Check that a ListItem for Item exists on the List	|	ListItem exists for Item	|		|		|		|
 |	Add New Item to List	|	Integration Test	|	Use searchItemsByName to create new Item and add it to the list	|	Run the createNewItemInstance function from the searchItemsByName function	|	1. Select a List 2. Search for Item using the searchItemsByName function 3. Add new Item to an ItemType using the createNewItemInstance function 4. Add item to List using the addItemToList function 5. Check that a ListItem for Item exists on the List	|	ListItem exists for Item	|		|		|		|
-|	saveItem	|	Unit Test	|	Save a new Item to the database	|	Test saveItem function	|		|	New Item exists in the database	|		|		|		|
+|	Create a small shopping list	|	System Test	|	Use the system to create a new list and add various items, some in the database, some that need to be added	|	Test the system's ability to handle the basic list creation functions	|	1. Create a new List 2. Add a couple of Items to the List by searching by Type 3. Add a couple of Items to the List by searching by Name 4. Add a couple of items to the List by searching by Name and adding them to the database	|	The user is able to efficiently create a grocery list	|		|		|		|
+|	Check Items on the new shopping List	|	System Test	|	Use the system to check off various items to simulate use in shopping, then uncheck all to simulate the complete lifecycle of the shopping list	|	Test the system's ability to handle the basic list usage functions	|	1. Select a List 2. Check off each item on the List 3. Uncheck all Items	|	The user is able to efficiently manage an existing grocery list	|		|		|		|
+|	Edit an existing shopping list	|	System Test	|	Use the system to amend an exisitng shopping list	|	Test the system's ability to handle the basic list usage functions	|	1. Select a List 2. Delete an Item 3. Change the quantity of an Item 4. Add a new Item	|	The user is able to efficiently manage an existing grocery list	|		|		|		|
