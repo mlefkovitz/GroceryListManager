@@ -79,8 +79,6 @@ public class GroceryListActivity extends AppCompatActivity {
                 GroceryList newGroceryList = new GroceryList();
                 newGroceryList.setName(name);
                 mAdapter.addGroceryList(newGroceryList);
-//                db.addGroceryList(newGroceryList);
-//                mAdapter.setGroceryLists(name);
                 mRecyclerView.setAdapter(mAdapter);
             }
         }
