@@ -19,7 +19,7 @@ public class ItemAdapter extends RecyclerView
         .DataObjectHolder>{
     private static String LOG_TAG = "ItemAdapter";
     private static MyClickListener myClickListener;
-    private List<Item> items;
+    private static List<Item> items;
     private ItemsDao db;
 
     public ItemAdapter(Context context) {
@@ -28,15 +28,15 @@ public class ItemAdapter extends RecyclerView
     }
 
     public List<Item> getItems() {
-        return this.items;
-    }
-
-    public void setItems(String name) {
-        this.items = db.getItems(name);
+        return items;
     }
 
     public void setItems(List<Item> items) {
-        this.items = items;
+        ItemAdapter.items = items;
+    }
+
+    public void setItems(String name) {
+        items = db.getItems(name);
     }
 
     public void addItem(Item item){
@@ -86,7 +86,9 @@ public class ItemAdapter extends RecyclerView
 
         @Override
         public void onClick(View v) {
-            myClickListener.onItemClick(getPosition(), v);
+            int pos = getPosition();
+            long id = items.get(pos).getId();
+            myClickListener.onItemClick((int) id, v);
         }
     }
 }

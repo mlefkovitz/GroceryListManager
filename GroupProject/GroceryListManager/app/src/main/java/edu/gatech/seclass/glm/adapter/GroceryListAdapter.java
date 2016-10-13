@@ -22,7 +22,7 @@ public class GroceryListAdapter extends RecyclerView
         .DataObjectHolder>{
     private static String LOG_TAG = "GroceryListAdapter";
     private static MyClickListener myClickListener;
-    private List<GroceryList> groceryLists;
+    private static List<GroceryList> groceryLists;
     private GroceryListDao db;
 
     public GroceryListAdapter(Context context) {
@@ -31,15 +31,19 @@ public class GroceryListAdapter extends RecyclerView
     }
 
     public List<GroceryList> getGroceryLists() {
-        return this.groceryLists;
-    }
-
-    public void setGroceryLists(String name) {
-        this.groceryLists = db.getGroceryLists(name);
+        return groceryLists;
     }
 
     public void setGroceryLists(List<GroceryList> groceryLists) {
-        this.groceryLists = groceryLists;
+        GroceryListAdapter.groceryLists = groceryLists;
+    }
+
+    public GroceryList getGroceryList(long pos) {
+        return groceryLists.get((int) pos);
+    }
+
+    public void setGroceryLists(String name) {
+        groceryLists = db.getGroceryLists(name);
     }
 
     public void addGroceryList(GroceryList groceryList){
@@ -89,7 +93,9 @@ public class GroceryListAdapter extends RecyclerView
 
         @Override
         public void onClick(View v) {
-            myClickListener.onItemClick(getPosition(), v);
+            int pos = getPosition();
+            long id = groceryLists.get(pos).getId();
+            myClickListener.onItemClick((int) id, v);
         }
     }
 }

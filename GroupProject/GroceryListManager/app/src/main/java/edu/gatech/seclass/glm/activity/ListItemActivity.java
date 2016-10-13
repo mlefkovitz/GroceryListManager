@@ -1,5 +1,7 @@
 package edu.gatech.seclass.glm.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,10 +36,13 @@ public class ListItemActivity extends AppCompatActivity {
         buttonCompute.setOnClickListener(new SearchListener());
 
         Button buttonAdd = (Button) findViewById(R.id.buttonAdd);
-        buttonAdd.setOnClickListener(new AddListener());
+        buttonAdd.setOnClickListener(new AddNewItemListener());
 
         mLayoutManager = new LinearLayoutManager(this);
+        Intent intent = getIntent();
+        long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
         mAdapter = new ListItemAdapter(this);
+        mAdapter.setListItems(grocery_list_id);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_item_view);
         mRecyclerView.setHasFixedSize(true);
@@ -62,29 +67,40 @@ public class ListItemActivity extends AppCompatActivity {
         });
     }
 
-
-    private class SearchListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            String name = listItemNameValue.getText().toString();
-            mAdapter.setListItems("");
-            mRecyclerView.setAdapter(mAdapter);
-        }
-    }
-
-
-    private class AddListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
-            String name = listItemNameValue.getText().toString();
-            if(name!=null && !name.isEmpty()) {
-                ListItem newListItem = null;
-                newListItem.setQuantity(0);
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_OK) {
+                long grocery_list_id = Long.valueOf(getIntent().getStringExtra("GROCERY_LIST_ID"));
+                long item_id = Long.valueOf(data.getStringExtra("ITEM_ID"));
+                Log.i(LOG_TAG, " INSERT " + grocery_list_id + " " + item_id);
+                ListItem newListItem = new ListItem();
+                newListItem.setGrocery_list_id(grocery_list_id);
+                newListItem.setItem_id(item_id);
                 mAdapter.addListItem(newListItem);
                 mRecyclerView.setAdapter(mAdapter);
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
             }
         }
     }
 
+    private class SearchListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            long grocery_list_id = Long.valueOf(getIntent().getStringExtra("GROCERY_LIST_ID"));
+            mAdapter.setListItems(grocery_list_id);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
 
+    private class AddNewItemListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent intent = new Intent(ListItemActivity.this, edu.gatech.seclass.glm.activity.ItemActivity.class);
+            startActivityForResult(intent, 1);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
 }

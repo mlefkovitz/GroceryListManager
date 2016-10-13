@@ -1,5 +1,6 @@
 package edu.gatech.seclass.glm.dao;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,9 +32,10 @@ public class ListItemDao extends SQLiteOpenHelper {
     }
 
     // Getting all List items
-    public List<ListItem> getListItems() {
+    public List<ListItem> getListItems(long grocery_list_id) {
         List<ListItem> listItem = new ArrayList<ListItem>();
-        String selectQuery = "SELECT * FROM " + DBContract.ListItem.TABLE_NAME;
+        String selectQuery = "SELECT * FROM " + DBContract.ListItem.TABLE_NAME + " li ";
+        selectQuery += " WHERE li." + DBContract.ListItem.COLUMN_GROCERY_LIST_ID + " = " + grocery_list_id;
 
         // Join DBContract.Item.TABLE_NAME ON DBContract.ListItem.TABLE_NAME+"("+.ListItem.+_ID+")"= DBContract.Item.TABLE_NAME+"(".Item.+_ID")"
         // + Join DBContract.GroceryList.COLUMN_NAME ON DBContract.Item.TABLE_NAME+"(".Item.+_ID")" = DBContract.GroceryList.COLUMN_NAME+"("+GroceryList._ID+")";
@@ -58,7 +60,14 @@ public class ListItemDao extends SQLiteOpenHelper {
         return listItem;
     }
 
-    public void addListItem(ListItem item) {
-
+    public void addListItem(ListItem listItem) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DBContract.ListItem.COLUMN_GROCERY_LIST_ID, listItem.getGrocery_list_id());
+        values.put(DBContract.ListItem.COLUMN_ITEM_ID, listItem.getItem_id());
+        values.put(DBContract.ListItem.COLUMN_QUANTITY, listItem.getQuantity());
+        // Inserting Row
+        db.insert(DBContract.ListItem.TABLE_NAME, null, values);
+        db.close(); // Closing database connection
     }
 }
