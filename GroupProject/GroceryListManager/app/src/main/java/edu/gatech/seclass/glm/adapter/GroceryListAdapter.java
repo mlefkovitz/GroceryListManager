@@ -21,8 +21,8 @@ public class GroceryListAdapter extends RecyclerView
         .Adapter<GroceryListAdapter
         .DataObjectHolder>{
     private static String LOG_TAG = "GroceryListAdapter";
-    private List<GroceryList> groceryLists;
     private static MyClickListener myClickListener;
+    private List<GroceryList> groceryLists;
     private GroceryListDao db;
 
     public GroceryListAdapter(Context context) {
@@ -34,12 +34,12 @@ public class GroceryListAdapter extends RecyclerView
         return this.groceryLists;
     }
 
-    public void setGroceryLists(List<GroceryList> groceryLists) {
-        this.groceryLists = groceryLists;
-    }
-
     public void setGroceryLists(String name) {
         this.groceryLists = db.getGroceryLists(name);
+    }
+
+    public void setGroceryLists(List<GroceryList> groceryLists) {
+        this.groceryLists = groceryLists;
     }
 
     public void addGroceryList(GroceryList groceryList){
@@ -51,7 +51,7 @@ public class GroceryListAdapter extends RecyclerView
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.grovery_list_view_item, parent, false);
+                .inflate(R.layout.grocery_list_view_item, parent, false);
 
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;
@@ -65,6 +65,14 @@ public class GroceryListAdapter extends RecyclerView
     @Override
     public int getItemCount() {
         return groceryLists==null? 0 : groceryLists.size();
+    }
+
+    public void setOnItemClickListener(MyClickListener myClickListener) {
+        GroceryListAdapter.myClickListener = myClickListener;
+    }
+
+    public interface MyClickListener {
+        void onItemClick(int position, View v);
     }
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder
@@ -83,13 +91,5 @@ public class GroceryListAdapter extends RecyclerView
         public void onClick(View v) {
             myClickListener.onItemClick(getPosition(), v);
         }
-    }
-
-    public void setOnItemClickListener(MyClickListener myClickListener) {
-        this.myClickListener = myClickListener;
-    }
-
-    public interface MyClickListener {
-        public void onItemClick(int position, View v);
     }
 }

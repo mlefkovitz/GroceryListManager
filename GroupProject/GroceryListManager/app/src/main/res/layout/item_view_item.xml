@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
-        <import type="edu.gatech.seclass.glm.model.ItemType" />
+
+        <import type="edu.gatech.seclass.glm.model.Item" />
+
         <variable
-            name="item_type"
-            type="ItemType" />
+            name="item"
+            type="Item" />
     </data>
 
     <!-- Add Your Existing layout here-->
@@ -19,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:text="@{item_type.name}" />
+            android:text="@{item.name}" />
     </LinearLayout>
+
 </layout>
 

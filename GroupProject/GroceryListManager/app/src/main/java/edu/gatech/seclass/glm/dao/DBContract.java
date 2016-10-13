@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
  * Created by thome127 on 10/9/16.
  */
 public class DBContract {
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 5;
     public static final String DATABASE_NAME = "glm_db";
     private DBContract() {
     }
