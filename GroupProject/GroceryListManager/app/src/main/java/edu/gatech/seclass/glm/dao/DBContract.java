@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
  * Created by thome127 on 10/9/16.
  */
 public class DBContract {
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 3;
     public static final String DATABASE_NAME = "glm_db";
     private DBContract() {
     }
@@ -27,13 +27,14 @@ public class DBContract {
         public static final String COLUMN_DESCRIPTION = "description";
         public static final String COLUMN_ITEM_TYPE_ID = "item_type_id";
 
-        public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
-                TABLE_NAME + " (" +
-                _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COLUMN_NAME + " TEXT, " +
-                COLUMN_DESCRIPTION + " TEXT, " +
-                COLUMN_ITEM_TYPE_ID + " INTEGER," +
-                " FOREIGN KEY ("+COLUMN_ITEM_TYPE_ID+") REFERENCES "+ItemType.TABLE_NAME+"("+ItemType._ID+"))";
+        public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
+                + TABLE_NAME + " ("
+                + _ID + " INTEGER PRIMARY KEY AUTOINCREMENT"
+                + ", " + COLUMN_NAME + " TEXT"
+                + ", " + COLUMN_DESCRIPTION + " TEXT"
+                + ", "  + COLUMN_ITEM_TYPE_ID + " INTEGER"
+                + ", FOREIGN KEY ("+COLUMN_ITEM_TYPE_ID+") REFERENCES "+ItemType.TABLE_NAME+"("+ItemType._ID+")"
+                + ")";
     }
 
     public static class ItemType implements BaseColumns {
