@@ -23,5 +23,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.GroceryListActivity.class));
             }
         });
+
+        binding.listItemsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.ItemTypeActivity.class));
+            }
+        });
     }
 }
