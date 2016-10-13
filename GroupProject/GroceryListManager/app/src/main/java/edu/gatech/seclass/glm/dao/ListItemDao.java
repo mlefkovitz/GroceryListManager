@@ -15,9 +15,11 @@ import edu.gatech.seclass.glm.model.ListItem;
  * Created by shazamW81 on 10/11/2016.
  */
 public class ListItemDao extends SQLiteOpenHelper {
+    private static ItemDao itemDao;
 
     public ListItemDao(Context context) {
         super(context, DBContract.DATABASE_NAME, null, DBContract.DATABASE_VERSION);
+        itemDao = new ItemDao(context);
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -34,40 +36,64 @@ public class ListItemDao extends SQLiteOpenHelper {
     // Getting all List items
     public List<ListItem> getListItems(long grocery_list_id) {
         List<ListItem> listItem = new ArrayList<ListItem>();
-        String selectQuery = "SELECT * FROM " + DBContract.ListItem.TABLE_NAME + " li ";
+        String selectQuery = "SELECT li.* FROM " + DBContract.ListItem.TABLE_NAME + " li ";
+        selectQuery += " JOIN " + DBContract.Item.TABLE_NAME + " i ";
+        selectQuery += " ON li." + DBContract.ListItem.COLUMN_ITEM_ID + " = i." + DBContract.Item._ID;
+        selectQuery += " JOIN " + DBContract.ItemType.TABLE_NAME + " it ";
+        selectQuery += " ON i." + DBContract.Item.COLUMN_ITEM_TYPE_ID + " = it." + DBContract.ItemType._ID;
         selectQuery += " WHERE li." + DBContract.ListItem.COLUMN_GROCERY_LIST_ID + " = " + grocery_list_id;
+        selectQuery += " ORDER BY it." + DBContract.ItemType.COLUMN_NAME + ", i." + DBContract.Item.COLUMN_NAME;
 
-        // Join DBContract.Item.TABLE_NAME ON DBContract.ListItem.TABLE_NAME+"("+.ListItem.+_ID+")"= DBContract.Item.TABLE_NAME+"(".Item.+_ID")"
-        // + Join DBContract.GroceryList.COLUMN_NAME ON DBContract.Item.TABLE_NAME+"(".Item.+_ID")" = DBContract.GroceryList.COLUMN_NAME+"("+GroceryList._ID+")";
 
         SQLiteDatabase db = this.getWritableDatabase();
+//        onUpgrade(db,1,1);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 ListItem listitem = new ListItem();
                 listitem.setId(Integer.parseInt(cursor.getString(0)));
-                listitem.setItem_id(Integer.parseInt(cursor.getString(1)));
-                listitem.setGrocery_list_id(Integer.parseInt(cursor.getString(2)));
-                listitem.setQuantity(Integer.parseInt(cursor.getString(3)));
-                listitem.setChecked(Boolean.parseBoolean(cursor.getString(4)));
+                listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
+                listitem.setChecked(Boolean.parseBoolean(cursor.getString(2)));
+                listitem.setItemId(cursor.getLong(3));
+                listitem.setItem(itemDao.getItem(cursor.getLong(3)));
+                listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
                 listItem.add(listitem);
             } while (cursor.moveToNext());
         }
-
-        // return contact list
         return listItem;
     }
 
     public void addListItem(ListItem listItem) {
         SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(DBContract.ListItem.COLUMN_GROCERY_LIST_ID, listItem.getGrocery_list_id());
-        values.put(DBContract.ListItem.COLUMN_ITEM_ID, listItem.getItem_id());
-        values.put(DBContract.ListItem.COLUMN_QUANTITY, listItem.getQuantity());
-        // Inserting Row
-        db.insert(DBContract.ListItem.TABLE_NAME, null, values);
-        db.close(); // Closing database connection
+        ListItem newListItem = getListItem(listItem.getGroceryListId(), listItem.getItemId());
+        if (newListItem == null) {
+            ContentValues values = new ContentValues();
+            values.put(DBContract.ListItem.COLUMN_GROCERY_LIST_ID, listItem.getGroceryListId());
+            values.put(DBContract.ListItem.COLUMN_ITEM_ID, listItem.getItemId());
+            values.put(DBContract.ListItem.COLUMN_QUANTITY, listItem.getQuantity());
+            values.put(DBContract.ListItem.COLUMN_CHECKED, listItem.isChecked());
+            db.insert(DBContract.ListItem.TABLE_NAME, null, values);
+        }
+        db.close();
+    }
+
+    private ListItem getListItem(long groceryListId, long itemId) {
+        ListItem listitem = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "Select * from " + DBContract.ListItem.TABLE_NAME +
+                " WHERE " + DBContract.ListItem.COLUMN_GROCERY_LIST_ID + " = " + groceryListId +
+                " AND " + DBContract.ListItem.COLUMN_ITEM_ID + " = " + itemId;
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            listitem = new ListItem();
+            listitem.setId(Integer.parseInt(cursor.getString(0)));
+            listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
+            listitem.setChecked(Boolean.parseBoolean(cursor.getString(2)));
+            listitem.setItemId(cursor.getLong(3));
+            listitem.setItem(itemDao.getItem(cursor.getLong(3)));
+            listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
+        }
+        return listitem;
     }
 }

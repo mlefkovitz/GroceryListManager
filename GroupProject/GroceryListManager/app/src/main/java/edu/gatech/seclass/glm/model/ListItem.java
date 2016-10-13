@@ -7,8 +7,9 @@ import android.databinding.BaseObservable;
  */
 public class ListItem extends BaseObservable {
     private long id;
-    private long item_id;
-    private long grocery_list_id;
+    private long itemId;
+    private long groceryListId;
+    private Item item;
     private int quantity;
     private boolean checked;
 
@@ -24,20 +25,20 @@ public class ListItem extends BaseObservable {
         this.id = id;
     }
 
-    public long getItem_id() {
-        return item_id;
+    public long getItemId() {
+        return itemId;
     }
 
-    public void setItem_id(long item_id) {
-        this.item_id = item_id;
+    public void setItemId(long itemId) {
+        this.itemId = itemId;
     }
 
-    public long getGrocery_list_id() {
-        return grocery_list_id;
+    public long getGroceryListId() {
+        return groceryListId;
     }
 
-    public void setGrocery_list_id(long grocery_list_id) {
-        this.grocery_list_id = grocery_list_id;
+    public void setGroceryListId(long groceryListId) {
+        this.groceryListId = groceryListId;
     }
 
     public int getQuantity() {
@@ -48,11 +49,19 @@ public class ListItem extends BaseObservable {
         this.quantity = quantity;
     }
 
-    public boolean getChecked() {
+    public boolean isChecked() {
         return checked;
     }
 
     public void setChecked(boolean checked) {
         this.checked = checked;
+    }
+
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 }

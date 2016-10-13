@@ -75,8 +75,8 @@ public class ListItemActivity extends AppCompatActivity {
                 long item_id = Long.valueOf(data.getStringExtra("ITEM_ID"));
                 Log.i(LOG_TAG, " INSERT " + grocery_list_id + " " + item_id);
                 ListItem newListItem = new ListItem();
-                newListItem.setGrocery_list_id(grocery_list_id);
-                newListItem.setItem_id(item_id);
+                newListItem.setGroceryListId(grocery_list_id);
+                newListItem.setItemId(item_id);
                 mAdapter.addListItem(newListItem);
                 mRecyclerView.setAdapter(mAdapter);
             }

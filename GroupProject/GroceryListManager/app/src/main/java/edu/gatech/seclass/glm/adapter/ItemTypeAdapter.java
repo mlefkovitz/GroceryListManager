@@ -34,12 +34,12 @@ public class ItemTypeAdapter extends RecyclerView
         return this.itemTypes;
     }
 
-    public void setItemTypes(String name) {
-        this.itemTypes = db.getItemTypes(name);
-    }
-
     public void setItemTypes(List<ItemType> itemTypes) {
         this.itemTypes = itemTypes;
+    }
+
+    public void setItemTypes(String name) {
+        this.itemTypes = db.getItemTypes(name);
     }
 
     public void addItemType(ItemType itemType){
@@ -51,7 +51,7 @@ public class ItemTypeAdapter extends RecyclerView
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.grocery_list_view_item, parent, false);
+                .inflate(R.layout.item_type_view_item, parent, false);
 
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;
@@ -82,7 +82,7 @@ public class ItemTypeAdapter extends RecyclerView
 
         public DataObjectHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.textView);
+            name = (TextView) itemView.findViewById(R.id.itemTypeViewItem);
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }

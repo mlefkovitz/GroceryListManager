@@ -5,9 +5,19 @@ import android.databinding.BaseObservable;
 public class Item extends BaseObservable {
     private long id;
     private String name;
+    private long itemTypeId;
+    private ItemType itemType;
 
     public Item() {
 
+    }
+
+    public long getItemTypeId() {
+        return itemTypeId;
+    }
+
+    public void setItemTypeId(long itemTypeId) {
+        this.itemTypeId = itemTypeId;
     }
 
     public String getName() {
@@ -24,5 +34,13 @@ public class Item extends BaseObservable {
 
     public void setId(long id){
         this.id = id;
+    }
+
+    public ItemType getItemType() {
+        return itemType;
+    }
+
+    public void setItemType(ItemType itemType) {
+        this.itemType = itemType;
     }
 }
