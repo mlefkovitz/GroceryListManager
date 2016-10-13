@@ -14,7 +14,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_centerInParent="true">
+            android:layout_centerInParent="true"
+            android:id="@+id/linearLayout">
 
             <Button
                 android:id="@+id/groceryListsButton"
@@ -26,6 +27,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="List Items" />
+            <Button
+                android:id="@+id/itemsButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Items" />
         </LinearLayout>
     </RelativeLayout>
 </layout>
