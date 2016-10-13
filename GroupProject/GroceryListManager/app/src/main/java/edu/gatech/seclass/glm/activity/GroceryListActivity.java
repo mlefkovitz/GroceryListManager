@@ -1,5 +1,6 @@
 package edu.gatech.seclass.glm.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,13 +18,12 @@ import edu.gatech.seclass.glm.util.DividerItemDecoration;
 
 public class GroceryListActivity extends AppCompatActivity {
 
+    private static String LOG_TAG = "GroceryListActivity";
+    EditText groceryListNameValue;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static String LOG_TAG = "GroceryListActivity";
     private GroceryListAdapter mAdapter;
     private GroceryListDao db;
-
-    EditText groceryListNameValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,10 @@ public class GroceryListActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new GroceryListAdapter.MyClickListener() {
                  @Override
                  public void onItemClick(int position, View v) {
-                 Log.i(LOG_TAG, " Clicked on Item " + position);
+                     Log.i(LOG_TAG, " GO TO LIST ITEMS FOR GROCERY ID " + position);
+                     Intent intent = new Intent(GroceryListActivity.this, edu.gatech.seclass.glm.activity.ListItemActivity.class);
+                     intent.putExtra("GROCERY_LIST_ID", "" + position);
+                     startActivity(intent);
             }
          });
     }
