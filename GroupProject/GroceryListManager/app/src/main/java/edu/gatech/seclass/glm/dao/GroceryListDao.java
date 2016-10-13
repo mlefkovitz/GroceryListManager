@@ -58,18 +58,14 @@ public class GroceryListDao extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         String[] selectionArgs = {"%" + name + "%"};
         Cursor cursor = db.rawQuery(selectQuery, selectionArgs);
-        // looping through all rows and adding to list
         if (cursor.moveToFirst()) {
             do {
                 GroceryList groceryList = new GroceryList();
                 groceryList.setId(Integer.parseInt(cursor.getString(0)));
                 groceryList.setName(cursor.getString(1));
-                // Adding contact to list
                 groceryListList.add(groceryList);
             } while (cursor.moveToNext());
         }
-
-        // return contact list
         return groceryListList;
     }
 }

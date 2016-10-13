@@ -2,10 +2,10 @@ package edu.gatech.seclass.glm.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import java.util.List;
@@ -19,7 +19,7 @@ public class ListItemAdapter extends RecyclerView
         .DataObjectHolder> {
     private static String LOG_TAG = "ListItemAdapter";
     private static MyClickListener myClickListener;
-    private List<ListItem> items;
+    private List<ListItem> listItems;
     private ListItemDao db;
 
     public ListItemAdapter(Context context) {
@@ -27,15 +27,15 @@ public class ListItemAdapter extends RecyclerView
     }
 
     public List<ListItem> getListItems() {
-        return this.items;
-    }
-
-    public void setListItems(List<ListItem> items) {
-        this.items = items;
+        return this.listItems;
     }
 
     public void setListItems(long grocery_list_id) {
-        this.items = db.getListItems(grocery_list_id);
+        this.listItems = db.getListItems(grocery_list_id);
+    }
+
+    public void setListItems(List<ListItem> items) {
+        this.listItems = items;
     }
 
     public void addListItem(ListItem item) {
@@ -46,7 +46,7 @@ public class ListItemAdapter extends RecyclerView
     public DataObjectHolder onCreateViewHolder(ViewGroup parent,
                                                int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.grocery_list_view_item, parent, false);
+                .inflate(R.layout.list_item_view_item, parent, false);
 
         DataObjectHolder dataObjectHolder = new DataObjectHolder(view);
         return dataObjectHolder;
@@ -54,12 +54,15 @@ public class ListItemAdapter extends RecyclerView
 
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
-        holder.name.setText(items.get(position).toString());
+        holder.name.setText(listItems.get(position).getItem().getName());
+        holder.itemType.setText(listItems.get(position).getItem().getItemType().getName());
+        holder.quantity.setText("" + listItems.get(position).getQuantity());
+        holder.checked.setChecked(listItems.get(position).isChecked());
     }
 
     @Override
     public int getItemCount() {
-        return items == null ? 0 : items.size();
+        return listItems == null ? 0 : listItems.size();
     }
 
     public void setOnItemClickListener(MyClickListener myClickListener) {
@@ -74,11 +77,16 @@ public class ListItemAdapter extends RecyclerView
             implements View
             .OnClickListener {
         TextView name;
+        TextView itemType;
+        TextView quantity;
+        CheckBox checked;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.textView);
-            Log.i(LOG_TAG, "Adding Listener");
+            name = (TextView) itemView.findViewById(R.id.listItemViewItem);
+            itemType = (TextView) itemView.findViewById(R.id.listItemTypeViewItem);
+            quantity = (TextView) itemView.findViewById(R.id.listItemQuantityViewItem);
+            checked = (CheckBox) itemView.findViewById(R.id.listItemCheckedViewItem);
             itemView.setOnClickListener(this);
         }
 

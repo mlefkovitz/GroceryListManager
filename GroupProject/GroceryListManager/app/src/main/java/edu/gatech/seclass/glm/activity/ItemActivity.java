@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 import edu.gatech.seclass.glm.R;
 import edu.gatech.seclass.glm.adapter.ItemAdapter;
-import edu.gatech.seclass.glm.dao.ItemsDao;
+import edu.gatech.seclass.glm.dao.ItemDao;
 import edu.gatech.seclass.glm.model.Item;
 import edu.gatech.seclass.glm.util.DividerItemDecoration;
 
@@ -24,7 +24,7 @@ public class ItemActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private ItemAdapter mAdapter;
-    private ItemsDao db;
+    private ItemDao db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

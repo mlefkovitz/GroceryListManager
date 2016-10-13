@@ -2,7 +2,6 @@ package edu.gatech.seclass.glm.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,16 +33,16 @@ public class GroceryListAdapter extends RecyclerView
         return groceryLists;
     }
 
+    public void setGroceryLists(String name) {
+        groceryLists = db.getGroceryLists(name);
+    }
+
     public void setGroceryLists(List<GroceryList> groceryLists) {
         GroceryListAdapter.groceryLists = groceryLists;
     }
 
     public GroceryList getGroceryList(long pos) {
         return groceryLists.get((int) pos);
-    }
-
-    public void setGroceryLists(String name) {
-        groceryLists = db.getGroceryLists(name);
     }
 
     public void addGroceryList(GroceryList groceryList){
@@ -86,8 +85,7 @@ public class GroceryListAdapter extends RecyclerView
 
         public DataObjectHolder(View itemView) {
             super(itemView);
-            name = (TextView) itemView.findViewById(R.id.textView);
-            Log.i(LOG_TAG, "Adding Listener");
+            name = (TextView) itemView.findViewById(R.id.groceryListViewItem);
             itemView.setOnClickListener(this);
         }
 

@@ -6,7 +6,7 @@ import android.provider.BaseColumns;
  * Created by thome127 on 10/9/16.
  */
 public class DBContract {
-    public static final int DATABASE_VERSION = 5;
+    public static final int DATABASE_VERSION = 6;
     public static final String DATABASE_NAME = "glm_db";
     private DBContract() {
     }
@@ -54,7 +54,7 @@ public class DBContract {
         public static final String COLUMN_QUANTITY = "quantity";
         public static final String COLUMN_ITEM_ID = "item_id";
         public static final String COLUMN_GROCERY_LIST_ID = "grocery_list_id";
-        public static final String COLUMN_CHECKED = "item_type_id";
+        public static final String COLUMN_CHECKED = "checked";
 
         public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " +
                 TABLE_NAME + " (" +
