@@ -11,11 +11,11 @@
         tools:context="edu.gatech.seclass.glm.MainActivity">
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_centerInParent="true"
-            android:id="@+id/linearLayout">
+            android:orientation="vertical">
 
             <Button
                 android:id="@+id/groceryListsButton"
@@ -32,6 +32,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Items" />
+
+            <Button
+                android:id="@+id/itemTypesButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Item Types" />
         </LinearLayout>
     </RelativeLayout>
 </layout>

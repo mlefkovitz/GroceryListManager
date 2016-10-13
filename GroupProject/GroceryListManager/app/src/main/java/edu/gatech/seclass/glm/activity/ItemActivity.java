@@ -15,15 +15,14 @@ import edu.gatech.seclass.glm.dao.ItemsDao;
 import edu.gatech.seclass.glm.model.Item;
 import edu.gatech.seclass.glm.util.DividerItemDecoration;
 
-public class ItemsActivity extends AppCompatActivity {
+public class ItemActivity extends AppCompatActivity {
 
+    private static String LOG_TAG = "ItemActivity";
+    EditText itemNameValue;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static String LOG_TAG = "ItemsActivity";
     private ItemAdapter mAdapter;
     private ItemsDao db;
-
-    EditText itemNameValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +51,7 @@ public class ItemsActivity extends AppCompatActivity {
 
     }
 
-   @Override
+    @Override
     protected void onResume() {
         super.onResume();
         mAdapter.setOnItemClickListener(new ItemAdapter.MyClickListener() {
@@ -78,7 +77,7 @@ public class ItemsActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             String name = itemNameValue.getText().toString();
-            if(name!=null && !name.isEmpty()) {
+            if (name != null && !name.isEmpty()) {
                 Item newItem = new Item();
                 newItem.setName(name);
                 mAdapter.addItem(newItem);

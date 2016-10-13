@@ -2,8 +2,8 @@ package edu.gatech.seclass.glm;
 
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import edu.gatech.seclass.glm.databinding.ActivityMainBinding;
@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.GroceryListActivity.class));
             }
         });
-        binding.listItemsButton.setOnClickListener(new View.OnClickListener() {
+        binding.itemTypesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.ItemTypeActivity.class));
@@ -32,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
         binding.itemsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.ItemsActivity.class));
+                startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.ItemActivity.class));
+            }
+        });
+        binding.listItemsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.ListItemActivity.class));
             }
         });
     }

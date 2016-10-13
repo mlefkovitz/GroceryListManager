@@ -11,40 +11,35 @@ import android.widget.TextView;
 import java.util.List;
 
 import edu.gatech.seclass.glm.R;
-import edu.gatech.seclass.glm.dao.ItemTypeDao;
-import edu.gatech.seclass.glm.model.ItemType;
+import edu.gatech.seclass.glm.dao.ListItemDao;
+import edu.gatech.seclass.glm.model.ListItem;
 
-/**
- * Created by thome127 on 10/9/16.
- */
-public class ItemTypeAdapter extends RecyclerView
-        .Adapter<ItemTypeAdapter
-        .DataObjectHolder>{
-    private static String LOG_TAG = "ItemTypeAdapter";
+public class ListItemAdapter extends RecyclerView
+        .Adapter<ListItemAdapter
+        .DataObjectHolder> {
+    private static String LOG_TAG = "ListItemAdapter";
     private static MyClickListener myClickListener;
-    private List<ItemType> itemTypes;
-    private ItemTypeDao db;
+    private List<ListItem> items;
+    private ListItemDao db;
 
-    public ItemTypeAdapter(Context context) {
-        db = new ItemTypeDao(context);
-        setItemTypes("");
+    public ListItemAdapter(Context context) {
+        db = new ListItemDao(context);
     }
 
-    public List<ItemType> getItemTypes() {
-        return this.itemTypes;
+    public List<ListItem> getListItems() {
+        return this.items;
     }
 
-    public void setItemTypes(String name) {
-        this.itemTypes = db.getItemTypes(name);
+    public void setListItems(String name) {
+        this.items = db.getListItems();
     }
 
-    public void setItemTypes(List<ItemType> itemTypes) {
-        this.itemTypes = itemTypes;
+    public void setListItems(List<ListItem> items) {
+        this.items = items;
     }
 
-    public void addItemType(ItemType itemType){
-        db.addItemType(itemType);
-        setItemTypes("");
+    public void addListItem(ListItem item) {
+        db.addListItem(item);
     }
 
     @Override
@@ -59,16 +54,16 @@ public class ItemTypeAdapter extends RecyclerView
 
     @Override
     public void onBindViewHolder(DataObjectHolder holder, int position) {
-        holder.name.setText(itemTypes.get(position).getName());
+        holder.name.setText(items.get(position).toString());
     }
 
     @Override
     public int getItemCount() {
-        return itemTypes==null? 0 : itemTypes.size();
+        return items == null ? 0 : items.size();
     }
 
     public void setOnItemClickListener(MyClickListener myClickListener) {
-        ItemTypeAdapter.myClickListener = myClickListener;
+        ListItemAdapter.myClickListener = myClickListener;
     }
 
     public interface MyClickListener {
