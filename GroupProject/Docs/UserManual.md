@@ -54,40 +54,81 @@ the memory consumption of the app cannot be greater than 512 MB
 
 ## 4.0 GroceryListManager application ##
 
-
-### 4.1 How do you interact with the GroceryListManager application navigation ###
-   
-The GroceryListManager will invoke the list of Grocery List for the user to select a Grocery List on the  application landing page. if the users wishes,  the user may add a new Grocery List to the GroceryListManager. By selecting the Grocery List, the user  will be presented with the **List-item??** screen, there they can add Items to the Grocery List. 
-
-If the Item is not found, the user is will be presented with the **Type-item??** screen, where the ma add the Item to the Database based on the selecting the corresponding Item Type. 
+The Grocery List Manager starts with a prompt to create or select a Grocery List.
 
 
-The navigation will  allow the user to move from "**Grocery List**" to "**List-item??**" or "**Type-item??**".
+### 4.1 Grocery List Menu ###
+   The Grocery List Manager supports multiple lists. When the application is started for the first time, you'll need to create a new Grocery List.
+
+#### 4.1.1 Create a new list  
+
+Create a list by typing a list name into the box and selecting the Add button.
+
+In the photos below we create a new list named "New List":
+![Enter List Name](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List1.png)
+![Click Add](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List2.png)
+![New List Appears](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List3.png)
+
+#### 4.1.2 Select a list  
+
+Once you've created a list, you can select it. Click on the list to select it.
+
+### 4.2 Grocery List ###
+
+Your grocery list will serve as your home base. Add items to your shopping list, change their quantity, or delete them before you go shopping to make sure you know exactly what to buy.
+When you're at the store, conveniently check items off the list with the push of a button. 
+Once you're home, you can reset the list by removing all check marks.  
+
+#### 4.2.1 Rename the list
+If you're ready to change the name of the list, use the Rename button, at the top of the screen.
+
+In the photos below we change the name of "New List" to "The List":
+![Fill List Name box ](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Rename-Grocery-List1.png)
+![Click Rename once List Name is Ready](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Rename-Grocery-List2.png)
+
+#### 4.2.1 Delete the list
+
+If this list is no longer useful, click the Delete button to delete the list.
+
+#### 4.2.2 Add an item to the list
+
+When you create a new list it will be empty. Use the Add button to add a new item to the list.
+
+When you click Add you'll be asked to select from a given list of items.
+
+When you're ready to add an item, click on it and you'll be brought back to your list to select the quantity.
+
+#### 4.2.2.1 Search for an item by name
+
+You can use the search box to narrow down the list of items presented. Enter the name of the item you're looking for and hit search.  
+
+#### 4.2.2.2 Add a new item to the list of items
+
+If you can't find the item you're looking for, you can add it using the Add button.
+
+You'll be asked to select an item type. Once selected, the item will be added your grocery list and you'll be brought back to your list to select the quantity.
+
+Items added this way will be available to all grocery lists. 
+
+#### 4.2.3 Change an Item's Quantity
+
+Click on an item to change its quantity.
+
+#### 4.2.4 Delete an Item
+
+Click on an item to launch the prompt to delete the item.
+
+#### 4.2.5  Check an Item
+
+Click on an item's checkbox to check the item.
+
+#### 4.2.6 Clear All Check Boxes
+
+Use the Uncheck button to clear the check boxes for each item on your list. You can use this to reset your grocery list for next time.
 
 
-#### 4.2 Create, Rename or Delete List through the GroceryListManager  
-
-#### 4.3 Select a list through the GroceryListManager  
-
-#### 4.4 Lookup Item  by performing a search on Item by name or pick item from a list  
 
 
-#### 4.5 Add Item to the Grocery list  
-
-#### 4.6 Set Item Quantity or Change Item Quantity in  List the Grocery list 
-
-#### 4.7 Delete Item from the Grocery list 
-
-#### 4.8  Check Item in the Grocery list 
-
-#### 4.9 Clear All Check-Off Marks in the Grocery list
-
-#### 4.10 Save Item to Database of GroceryListManager  for Item Type
-
-
-#### 4.11 If no search match is found for the search on Item  select Item Type 
-
-#### 4.12 Save the Grocery list after modification 
 
 
 
