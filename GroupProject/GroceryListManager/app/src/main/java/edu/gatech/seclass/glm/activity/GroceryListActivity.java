@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,7 +56,6 @@ public class GroceryListActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new GroceryListAdapter.MyClickListener() {
                  @Override
                  public void onItemClick(int position, View v) {
-                     Log.i(LOG_TAG, " GO TO LIST ITEMS FOR GROCERY ID " + position);
                      Intent intent = new Intent(GroceryListActivity.this, edu.gatech.seclass.glm.activity.ListItemActivity.class);
                      intent.putExtra("GROCERY_LIST_ID", "" + position);
                      startActivity(intent);

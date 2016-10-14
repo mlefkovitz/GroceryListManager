@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,13 +52,7 @@ public class ListItemDao extends SQLiteOpenHelper {
 
         if (cursor.moveToFirst()) {
             do {
-                ListItem listitem = new ListItem();
-                listitem.setId(Integer.parseInt(cursor.getString(0)));
-                listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
-                listitem.setChecked(Boolean.parseBoolean(cursor.getString(2)));
-                listitem.setItemId(cursor.getLong(3));
-                listitem.setItem(itemDao.getItem(cursor.getLong(3)));
-                listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
+                ListItem listitem = mapListItem(cursor);
                 listItem.add(listitem);
             } while (cursor.moveToNext());
         }
@@ -88,13 +83,7 @@ public class ListItemDao extends SQLiteOpenHelper {
                 " AND " + DBContract.ListItem.COLUMN_ITEM_ID + " = " + itemId;
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()) {
-            listitem = new ListItem();
-            listitem.setId(Integer.parseInt(cursor.getString(0)));
-            listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
-            listitem.setChecked(Boolean.parseBoolean(cursor.getString(2)));
-            listitem.setItemId(cursor.getLong(3));
-            listitem.setItem(itemDao.getItem(cursor.getLong(3)));
-            listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
+            listitem = mapListItem(cursor);
         }
         return listitem;
     }
@@ -106,5 +95,29 @@ public class ListItemDao extends SQLiteOpenHelper {
                 " WHERE " + DBContract.ListItem._ID + " = " + item.getId();
         db.execSQL(sql);
         db.close();
+    }
+
+    public ListItem getListItem(int id) {
+        ListItem listitem = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "Select * from " + DBContract.ListItem.TABLE_NAME +
+                " WHERE " + DBContract.ListItem._ID + " = " + id;
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            listitem = mapListItem(cursor);
+        }
+        return listitem;
+    }
+
+    @NonNull
+    private ListItem mapListItem(Cursor cursor) {
+        ListItem listitem = new ListItem();
+        listitem.setId(Integer.parseInt(cursor.getString(0)));
+        listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
+        listitem.setChecked(Boolean.parseBoolean(cursor.getString(2)));
+        listitem.setItemId(cursor.getLong(3));
+        listitem.setItem(itemDao.getItem(cursor.getLong(3)));
+        listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
+        return listitem;
     }
 }

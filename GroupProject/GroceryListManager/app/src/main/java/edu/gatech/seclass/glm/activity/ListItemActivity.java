@@ -66,6 +66,8 @@ public class ListItemActivity extends AppCompatActivity {
             @Override
             public void onItemClick(int position, View v) {
                 Log.i(LOG_TAG, " Clicked on ListItem " + position);
+                ListItem newListItem = mAdapter.getListItem(position);
+                showUpdateListItemDialog(newListItem);
             }
         });
     }
@@ -79,26 +81,26 @@ public class ListItemActivity extends AppCompatActivity {
                 ListItem newListItem = new ListItem();
                 newListItem.setGroceryListId(grocery_list_id);
                 newListItem.setItemId(item_id);
-
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setTitle("Select Quantity");
-
-                final EditText input = new EditText(this);
-                input.setInputType(InputType.TYPE_CLASS_NUMBER);
-                alertDialogBuilder.setView(input);
-
-                UpdateQuantityListener setListener = new UpdateQuantityListener(input, newListItem, false);
-                UpdateQuantityListener cancelListener = new UpdateQuantityListener(input, newListItem, true);
-
-                alertDialogBuilder.setPositiveButton("Set", setListener);
-//                alertDialogBuilder.setNegativeButton("Cancel", cancelListener);
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
+                showUpdateListItemDialog(newListItem);
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
         }
+    }
+
+    private void showUpdateListItemDialog(ListItem newListItem) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setHint("Quantity");
+        alertDialogBuilder.setView(input);
+        UpdateQuantityListener setListener = new UpdateQuantityListener(input, newListItem, false);
+        UpdateQuantityListener cancelListener = new UpdateQuantityListener(input, newListItem, true);
+        alertDialogBuilder.setPositiveButton("Update", setListener);
+        alertDialogBuilder.setNegativeButton("Delete", cancelListener);
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
     }
 
     private class UpdateQuantityListener implements DialogInterface.OnClickListener {
@@ -111,7 +113,6 @@ public class ListItemActivity extends AppCompatActivity {
             this.input = input;
             this.cancel = cancel;
             this.listItem = mAdapter.addListItem(listItem);
-
         }
 
         @Override
@@ -120,6 +121,7 @@ public class ListItemActivity extends AppCompatActivity {
                 quantity = Integer.valueOf(input.getText().toString());
                 mAdapter.updateListItemQuantity(listItem, quantity);
             }
+            mAdapter.setListItems(listItem.getGroceryListId());
             mRecyclerView.setAdapter(mAdapter);
         }
     }

@@ -19,7 +19,7 @@ public class ListItemAdapter extends RecyclerView
         .DataObjectHolder> {
     private static String LOG_TAG = "ListItemAdapter";
     private static MyClickListener myClickListener;
-    private List<ListItem> listItems;
+    private static List<ListItem> listItems;
     private ListItemDao db;
 
     public ListItemAdapter(Context context) {
@@ -27,15 +27,15 @@ public class ListItemAdapter extends RecyclerView
     }
 
     public List<ListItem> getListItems() {
-        return this.listItems;
-    }
-
-    public void setListItems(List<ListItem> items) {
-        this.listItems = items;
+        return listItems;
     }
 
     public void setListItems(long grocery_list_id) {
-        this.listItems = db.getListItems(grocery_list_id);
+        listItems = db.getListItems(grocery_list_id);
+    }
+
+    public void setListItems(List<ListItem> items) {
+        listItems = items;
     }
 
     public ListItem addListItem(ListItem item) {
@@ -73,6 +73,10 @@ public class ListItemAdapter extends RecyclerView
         ListItemAdapter.myClickListener = myClickListener;
     }
 
+    public ListItem getListItem(int id) {
+        return db.getListItem(id);
+    }
+
     public interface MyClickListener {
         void onItemClick(int position, View v);
     }
@@ -96,7 +100,9 @@ public class ListItemAdapter extends RecyclerView
 
         @Override
         public void onClick(View v) {
-            myClickListener.onItemClick(getPosition(), v);
+            int pos = getPosition();
+            long id = listItems.get(pos).getId();
+            myClickListener.onItemClick((int) id, v);
         }
     }
 }
