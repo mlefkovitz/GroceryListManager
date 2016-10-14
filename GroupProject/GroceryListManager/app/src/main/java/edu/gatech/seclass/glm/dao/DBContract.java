@@ -6,10 +6,8 @@ import android.provider.BaseColumns;
  * Created by thome127 on 10/9/16.
  */
 public class DBContract {
-    public static final int DATABASE_VERSION = 6;
+    public static final int DATABASE_VERSION = 1;
     public static final String DATABASE_NAME = "glm_db";
-    private DBContract() {
-    }
 
     public static class GroceryList implements BaseColumns {
         public static final String TABLE_NAME = "grocery_list";
