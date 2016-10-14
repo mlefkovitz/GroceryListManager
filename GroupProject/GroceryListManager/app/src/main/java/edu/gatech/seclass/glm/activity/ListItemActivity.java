@@ -1,12 +1,14 @@
 package edu.gatech.seclass.glm.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,6 +40,9 @@ public class ListItemActivity extends AppCompatActivity {
         Button buttonAdd = (Button) findViewById(R.id.buttonAdd);
         buttonAdd.setOnClickListener(new AddNewItemListener());
 
+        Button buttonUncheckAll = (Button) findViewById(R.id.buttonUncheckAll);
+        buttonUncheckAll.setOnClickListener(new UncheckAllListener());
+
         mLayoutManager = new LinearLayoutManager(this);
         Intent intent = getIntent();
         long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
@@ -62,7 +67,8 @@ public class ListItemActivity extends AppCompatActivity {
        mAdapter.setOnItemClickListener(new ListItemAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                Log.i(LOG_TAG, " Clicked on ListItem " + position);
+                ListItem newListItem = mAdapter.getListItem(position);
+                showUpdateListItemDialog(newListItem);
             }
         });
     }
@@ -73,16 +79,57 @@ public class ListItemActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 long grocery_list_id = Long.valueOf(getIntent().getStringExtra("GROCERY_LIST_ID"));
                 long item_id = Long.valueOf(data.getStringExtra("ITEM_ID"));
-                Log.i(LOG_TAG, " INSERT " + grocery_list_id + " " + item_id);
                 ListItem newListItem = new ListItem();
                 newListItem.setGroceryListId(grocery_list_id);
                 newListItem.setItemId(item_id);
-                mAdapter.addListItem(newListItem);
-                mRecyclerView.setAdapter(mAdapter);
+                showUpdateListItemDialog(newListItem);
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
+        }
+    }
+
+    private void showUpdateListItemDialog(ListItem newListItem) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        input.setHint("Quantity");
+        alertDialogBuilder.setView(input);
+        UpdateDeleteListItemListener setListener = new UpdateDeleteListItemListener(input, newListItem, false);
+        UpdateDeleteListItemListener deleteListener = new UpdateDeleteListItemListener(input, newListItem, true);
+        alertDialogBuilder.setPositiveButton("Update", setListener);
+        alertDialogBuilder.setNegativeButton("Delete", deleteListener);
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    private class UpdateDeleteListItemListener implements DialogInterface.OnClickListener {
+        int quantity = 0;
+        ListItem listItem;
+        EditText input;
+        boolean delete = true;
+
+        public UpdateDeleteListItemListener(EditText input, ListItem listItem, boolean delete) {
+            this.input = input;
+            this.delete = delete;
+            this.listItem = mAdapter.addListItem(listItem);
+        }
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (!delete) {
+                try {
+                    quantity = Integer.valueOf(input.getText().toString());
+                    listItem.setQuantity(quantity);
+                    mAdapter.updateListItem(listItem);
+                } catch (Exception e) {
+                }
+            } else {
+                mAdapter.deleteListItem(listItem.getId());
+            }
+            mAdapter.setListItems(listItem.getGroceryListId());
+            mRecyclerView.setAdapter(mAdapter);
         }
     }
 
@@ -100,6 +147,17 @@ public class ListItemActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(ListItemActivity.this, edu.gatech.seclass.glm.activity.ItemActivity.class);
             startActivityForResult(intent, 1);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
+    private class UncheckAllListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent intent = getIntent();
+            long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
+            mAdapter.uncheckAll(grocery_list_id);
+            mAdapter.setListItems(grocery_list_id);
             mRecyclerView.setAdapter(mAdapter);
         }
     }

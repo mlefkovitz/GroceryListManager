@@ -67,6 +67,14 @@
                 android:text="Add New Item"
                 android:textAlignment="center" />
 
+            <Button
+                android:id="@+id/buttonUncheckAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Uncheck All"
+                android:textAlignment="center" />
+
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,26 +46,20 @@ public class ListItemDao extends SQLiteOpenHelper {
         selectQuery += " ORDER BY it." + DBContract.ItemType.COLUMN_NAME + ", i." + DBContract.Item.COLUMN_NAME;
 
 
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.getReadableDatabase();
 //        onUpgrade(db,1,1);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {
             do {
-                ListItem listitem = new ListItem();
-                listitem.setId(Integer.parseInt(cursor.getString(0)));
-                listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
-                listitem.setChecked(Boolean.parseBoolean(cursor.getString(2)));
-                listitem.setItemId(cursor.getLong(3));
-                listitem.setItem(itemDao.getItem(cursor.getLong(3)));
-                listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
+                ListItem listitem = mapListItem(cursor);
                 listItem.add(listitem);
             } while (cursor.moveToNext());
         }
         return listItem;
     }
 
-    public void addListItem(ListItem listItem) {
+    public ListItem addListItem(ListItem listItem) {
         SQLiteDatabase db = this.getWritableDatabase();
         ListItem newListItem = getListItem(listItem.getGroceryListId(), listItem.getItemId());
         if (newListItem == null) {
@@ -74,8 +69,10 @@ public class ListItemDao extends SQLiteOpenHelper {
             values.put(DBContract.ListItem.COLUMN_QUANTITY, listItem.getQuantity());
             values.put(DBContract.ListItem.COLUMN_CHECKED, listItem.isChecked());
             db.insert(DBContract.ListItem.TABLE_NAME, null, values);
+            newListItem = getListItem(listItem.getGroceryListId(), listItem.getItemId());
         }
         db.close();
+        return newListItem;
     }
 
     private ListItem getListItem(long groceryListId, long itemId) {
@@ -86,14 +83,59 @@ public class ListItemDao extends SQLiteOpenHelper {
                 " AND " + DBContract.ListItem.COLUMN_ITEM_ID + " = " + itemId;
         Cursor cursor = db.rawQuery(sql, null);
         if (cursor.moveToFirst()) {
-            listitem = new ListItem();
-            listitem.setId(Integer.parseInt(cursor.getString(0)));
-            listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
-            listitem.setChecked(Boolean.parseBoolean(cursor.getString(2)));
-            listitem.setItemId(cursor.getLong(3));
-            listitem.setItem(itemDao.getItem(cursor.getLong(3)));
-            listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
+            listitem = mapListItem(cursor);
         }
         return listitem;
+    }
+
+    public void updateListItem(ListItem item) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE " + DBContract.ListItem.TABLE_NAME +
+                " SET " + DBContract.ListItem.COLUMN_QUANTITY + " = " + item.getQuantity() +
+                " , " + DBContract.ListItem.COLUMN_CHECKED + " = " + (item.isChecked() ? 1 : 0) +
+                " WHERE " + DBContract.ListItem._ID + " = " + item.getId();
+        db.execSQL(sql);
+        db.close();
+    }
+
+    public ListItem getListItem(long id) {
+        ListItem listitem = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "Select * from " + DBContract.ListItem.TABLE_NAME +
+                " WHERE " + DBContract.ListItem._ID + " = " + id;
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            listitem = mapListItem(cursor);
+        }
+        return listitem;
+    }
+
+    public void uncheckAll(long groceryListId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE " + DBContract.ListItem.TABLE_NAME +
+                " SET " + DBContract.ListItem.COLUMN_CHECKED + " = " + 0 +
+                " WHERE " + DBContract.ListItem.COLUMN_GROCERY_LIST_ID + " = " + groceryListId;
+        db.execSQL(sql);
+        db.close();
+    }
+
+    @NonNull
+    private ListItem mapListItem(Cursor cursor) {
+        ListItem listitem = new ListItem();
+        listitem.setId(Integer.parseInt(cursor.getString(0)));
+        listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
+        listitem.setChecked(cursor.getInt(2) == 1);
+        listitem.setItemId(cursor.getLong(3));
+        listitem.setItem(itemDao.getItem(cursor.getLong(3)));
+        listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
+        return listitem;
+    }
+
+    public void deleteListItem(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "DELETE FROM " + DBContract.ListItem.TABLE_NAME +
+                " WHERE " + DBContract.ListItem._ID + " = " + id;
+        db.execSQL(sql);
+        db.close();
     }
 }
