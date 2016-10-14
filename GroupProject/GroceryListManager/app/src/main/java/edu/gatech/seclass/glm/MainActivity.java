@@ -23,18 +23,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.GroceryListActivity.class));
             }
         });
+        binding.itemTypesButton.setVisibility(View.INVISIBLE);
         binding.itemTypesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.ItemTypeActivity.class));
                    }
         });
+        binding.itemsButton.setVisibility(View.INVISIBLE);
         binding.itemsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, edu.gatech.seclass.glm.activity.ItemActivity.class));
             }
         });
+        binding.listItemsButton.setVisibility(View.INVISIBLE);
         binding.listItemsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

@@ -35,14 +35,9 @@ public class GroceryListDao extends SQLiteOpenHelper {
     public void addGroceryList(GroceryList groceryList) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(DBContract.GroceryList.COLUMN_NAME, groceryList.getName()); // groceryList Name
-        // Inserting Row
+        values.put(DBContract.GroceryList.COLUMN_NAME, groceryList.getName());
         db.insert(DBContract.GroceryList.TABLE_NAME, null, values);
-        db.close(); // Closing database connection
-    }
-
-    public List<GroceryList> getGroceryLists() {
-        return getGroceryLists(null);
+        db.close();
     }
 
     // Getting All groceryLists
@@ -67,5 +62,14 @@ public class GroceryListDao extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return groceryListList;
+    }
+
+    public void updateGroceryList(long id, String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE " + DBContract.GroceryList.TABLE_NAME +
+                " SET " + DBContract.GroceryList.COLUMN_NAME + " = " + name +
+                " WHERE " + DBContract.GroceryList._ID + " = " + id;
+        db.execSQL(sql);
+        db.close();
     }
 }

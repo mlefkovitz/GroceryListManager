@@ -36,6 +36,7 @@ public class ItemTypeActivity extends AppCompatActivity {
 
         Button buttonAdd = (Button) findViewById(R.id.buttonAdd);
         buttonAdd.setOnClickListener(new AddListener());
+        buttonAdd.setVisibility(View.INVISIBLE);
 
         mLayoutManager = new LinearLayoutManager(this);
         mAdapter = new ItemTypeAdapter(this);

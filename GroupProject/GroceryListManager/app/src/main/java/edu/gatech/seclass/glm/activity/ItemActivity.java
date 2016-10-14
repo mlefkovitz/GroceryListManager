@@ -67,8 +67,8 @@ public class ItemActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new ItemAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                Intent returnIntent = new Intent();
                 ListItemActivity.setSelectedItemId(position);
+                Intent returnIntent = new Intent();
                 setResult(Activity.RESULT_OK, returnIntent);
                 finish();
             }

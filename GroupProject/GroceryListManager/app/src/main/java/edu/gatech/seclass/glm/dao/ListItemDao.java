@@ -36,6 +36,10 @@ public class ListItemDao extends SQLiteOpenHelper {
 
     // Getting all List items
     public List<ListItem> getListItems(long grocery_list_id) {
+        return getListItems(grocery_list_id, null);
+    }
+
+    public List<ListItem> getListItems(long grocery_list_id, String item_name) {
         List<ListItem> listItem = new ArrayList<ListItem>();
         String selectQuery = "SELECT li.* FROM " + DBContract.ListItem.TABLE_NAME + " li ";
         selectQuery += " JOIN " + DBContract.Item.TABLE_NAME + " i ";
@@ -43,11 +47,15 @@ public class ListItemDao extends SQLiteOpenHelper {
         selectQuery += " JOIN " + DBContract.ItemType.TABLE_NAME + " it ";
         selectQuery += " ON i." + DBContract.Item.COLUMN_ITEM_TYPE_ID + " = it." + DBContract.ItemType._ID;
         selectQuery += " WHERE li." + DBContract.ListItem.COLUMN_GROCERY_LIST_ID + " = " + grocery_list_id;
+
+        if (item_name != null && !item_name.isEmpty()) {
+            item_name = item_name.trim();
+            selectQuery += " AND i." + DBContract.Item.COLUMN_NAME + " like '%" + item_name + "%'";
+        }
+
         selectQuery += " ORDER BY it." + DBContract.ItemType.COLUMN_NAME + ", i." + DBContract.Item.COLUMN_NAME;
 
-
         SQLiteDatabase db = this.getReadableDatabase();
-//        onUpgrade(db,1,1);
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         if (cursor.moveToFirst()) {

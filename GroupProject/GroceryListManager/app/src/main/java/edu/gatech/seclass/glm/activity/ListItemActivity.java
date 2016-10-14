@@ -42,6 +42,13 @@ public class ListItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_item_activity);
+
+        Button buttonRenameList = (Button) findViewById(R.id.buttonRenameList);
+        buttonRenameList.setOnClickListener(new RenameListListener());
+
+        Button buttonDeleteList = (Button) findViewById(R.id.buttonDeleteList);
+        buttonDeleteList.setOnClickListener(new DeleteListListener());
+
         listItemNameValue = (EditText) findViewById(R.id.listItemNameValue);
 
         Button buttonCompute = (Button) findViewById(R.id.buttonSearch);
@@ -142,7 +149,8 @@ public class ListItemActivity extends AppCompatActivity {
     private class SearchListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            mAdapter.setListItems(selectedGroceryListId);
+            String name = listItemNameValue.getText().toString();
+            mAdapter.setListItems(selectedGroceryListId, name);
             mRecyclerView.setAdapter(mAdapter);
         }
     }
@@ -161,6 +169,20 @@ public class ListItemActivity extends AppCompatActivity {
             mAdapter.uncheckAll(selectedGroceryListId);
             mAdapter.setListItems(selectedGroceryListId);
             mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
+    private class RenameListListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
+        }
+    }
+
+    private class DeleteListListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+
         }
     }
 }
