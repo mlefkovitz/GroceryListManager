@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import edu.gatech.seclass.glm.R;
+import edu.gatech.seclass.glm.adapter.GroceryListAdapter;
 import edu.gatech.seclass.glm.adapter.ListItemAdapter;
 import edu.gatech.seclass.glm.dao.ListItemDao;
 import edu.gatech.seclass.glm.model.ListItem;
@@ -24,10 +25,12 @@ public class ListItemActivity extends AppCompatActivity {
     private static String LOG_TAG = "ListItemActivity";
     private static long selectedItemId;
     private static long selectedGroceryListId;
+    EditText listRenameValue;
     EditText listItemNameValue;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private ListItemAdapter mAdapter;
+    private GroceryListAdapter groceryListAdapter;
     private ListItemDao db;
 
     public static void setSelectedItemId(long id) {
@@ -42,6 +45,8 @@ public class ListItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_item_activity);
+
+        listRenameValue = (EditText) findViewById(R.id.listRenameValue);
 
         Button buttonRenameList = (Button) findViewById(R.id.buttonRenameList);
         buttonRenameList.setOnClickListener(new RenameListListener());
@@ -64,6 +69,7 @@ public class ListItemActivity extends AppCompatActivity {
         Intent intent = getIntent();
         long grocery_list_id = selectedGroceryListId;
         mAdapter = new ListItemAdapter(this);
+        groceryListAdapter = new GroceryListAdapter(this);
         mAdapter.setListItems(grocery_list_id);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_item_view);
@@ -175,14 +181,21 @@ public class ListItemActivity extends AppCompatActivity {
     private class RenameListListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-
+            String name = listRenameValue.getText().toString();
+            if (name != null && !name.isEmpty()) {
+                GroceryListAdapter.updateGroceryList(selectedGroceryListId, name);
+                Intent intent = new Intent(ListItemActivity.this, ListItemActivity.class);
+                startActivity(intent);
+            }
         }
     }
 
     private class DeleteListListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-
+            GroceryListAdapter.deleteGroceryList(selectedGroceryListId);
+            Intent intent = new Intent(ListItemActivity.this, GroceryListActivity.class);
+            startActivity(intent);
         }
     }
 }

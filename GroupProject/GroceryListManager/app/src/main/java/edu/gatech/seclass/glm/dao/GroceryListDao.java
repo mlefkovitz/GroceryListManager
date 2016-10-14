@@ -65,9 +65,21 @@ public class GroceryListDao extends SQLiteOpenHelper {
     }
 
     public void updateGroceryList(long id, String name) {
+        name = name != null ? name.replaceAll("'", "''") : name;
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "UPDATE " + DBContract.GroceryList.TABLE_NAME +
-                " SET " + DBContract.GroceryList.COLUMN_NAME + " = " + name +
+                " SET " + DBContract.GroceryList.COLUMN_NAME + " = '" + name + "'" +
+                " WHERE " + DBContract.GroceryList._ID + " = " + id;
+        db.execSQL(sql);
+        db.close();
+    }
+
+    public void deleteGroceryList(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "DELETE FROM " + DBContract.ListItem.TABLE_NAME +
+                " WHERE " + DBContract.ListItem.COLUMN_GROCERY_LIST_ID + " = " + id;
+        db.execSQL(sql);
+        sql = "DELETE FROM " + DBContract.GroceryList.TABLE_NAME +
                 " WHERE " + DBContract.GroceryList._ID + " = " + id;
         db.execSQL(sql);
         db.close();

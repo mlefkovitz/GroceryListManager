@@ -16,27 +16,38 @@
         android:weightSum="1">
 
         <LinearLayout
-            android:id="@+id/GroceryButtonsLayout"
+            android:id="@+id/listUpdateLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:orientation="horizontal"
             android:weightSum="1">
 
+            <EditText
+                android:id="@+id/listRenameValue"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.40"
+                android:hint="List Name"
+                android:maxLines="1"
+                android:minLines="1" />
+
             <Button
                 android:id="@+id/buttonRenameList"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Rename List"
+                android:layout_weight="0.30"
+                android:text="Rename"
                 android:textAlignment="center" />
 
             <Button
                 android:id="@+id/buttonDeleteList"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:text="Delete List"
+                android:layout_weight="0.30"
+                android:text="Delete"
                 android:textAlignment="center" />
         </LinearLayout>
 
@@ -65,7 +76,6 @@
                 android:layout_weight="0.60"
                 android:maxLines="1"
                 android:minLines="1" />
-
         </LinearLayout>
 
         <LinearLayout
