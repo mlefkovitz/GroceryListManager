@@ -20,16 +20,16 @@ public class ItemTypeDao extends SQLiteOpenHelper {
 
     public ItemTypeDao(Context context) {
         super(context, DBContract.DATABASE_NAME, null, DBContract.DATABASE_VERSION);
-    }
-
-    @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        sqLiteDatabase.execSQL(DBContract.ItemType.CREATE_TABLE);
         for (String type : DEFAULT_ITEM_TYPES) {
             ItemType itemType = new ItemType();
             itemType.setName(type);
             addItemType(itemType);
         }
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(DBContract.ItemType.CREATE_TABLE);
     }
 
     @Override

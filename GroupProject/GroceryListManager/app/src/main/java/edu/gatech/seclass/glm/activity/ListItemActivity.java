@@ -16,7 +16,6 @@ import android.widget.EditText;
 import edu.gatech.seclass.glm.R;
 import edu.gatech.seclass.glm.adapter.GroceryListAdapter;
 import edu.gatech.seclass.glm.adapter.ListItemAdapter;
-import edu.gatech.seclass.glm.dao.ListItemDao;
 import edu.gatech.seclass.glm.model.ListItem;
 import edu.gatech.seclass.glm.util.DividerItemDecoration;
 
@@ -31,7 +30,6 @@ public class ListItemActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private ListItemAdapter mAdapter;
     private GroceryListAdapter groceryListAdapter;
-    private ListItemDao db;
 
     public static void setSelectedItemId(long id) {
         selectedItemId = id;
