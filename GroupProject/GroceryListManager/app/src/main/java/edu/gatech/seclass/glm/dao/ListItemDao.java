@@ -88,16 +88,28 @@ public class ListItemDao extends SQLiteOpenHelper {
         return listitem;
     }
 
-    public void updateListItemQuantity(ListItem item, int quantity) {
+//    public void updateListItem(ListItem item, int quantity) {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        String sql = "UPDATE " + DBContract.ListItem.TABLE_NAME +
+//                " SET " + DBContract.ListItem.COLUMN_QUANTITY + " = " + quantity +
+//                " WHERE " + DBContract.ListItem._ID + " = " + item.getId();
+//        db.execSQL(sql);
+//        db.close();
+//    }
+
+    public void updateListItem(ListItem item) {
+        ListItem before = getListItem(item.getId());
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "UPDATE " + DBContract.ListItem.TABLE_NAME +
-                " SET " + DBContract.ListItem.COLUMN_QUANTITY + " = " + quantity +
+                " SET " + DBContract.ListItem.COLUMN_QUANTITY + " = " + item.getQuantity() +
+                " , " + DBContract.ListItem.COLUMN_CHECKED + " = " + (item.isChecked() ? 1 : 0) +
                 " WHERE " + DBContract.ListItem._ID + " = " + item.getId();
         db.execSQL(sql);
+        ListItem after = getListItem(item.getId());
         db.close();
     }
 
-    public ListItem getListItem(int id) {
+    public ListItem getListItem(long id) {
         ListItem listitem = null;
         SQLiteDatabase db = this.getReadableDatabase();
         String sql = "Select * from " + DBContract.ListItem.TABLE_NAME +
@@ -114,7 +126,7 @@ public class ListItemDao extends SQLiteOpenHelper {
         ListItem listitem = new ListItem();
         listitem.setId(Integer.parseInt(cursor.getString(0)));
         listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
-        listitem.setChecked(Boolean.parseBoolean(cursor.getString(2)));
+        listitem.setChecked(cursor.getInt(2) == 1);
         listitem.setItemId(cursor.getLong(3));
         listitem.setItem(itemDao.getItem(cursor.getLong(3)));
         listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));

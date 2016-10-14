@@ -2,10 +2,12 @@ package edu.gatech.seclass.glm.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -20,7 +22,7 @@ public class ListItemAdapter extends RecyclerView
     private static String LOG_TAG = "ListItemAdapter";
     private static MyClickListener myClickListener;
     private static List<ListItem> listItems;
-    private ListItemDao db;
+    private static ListItemDao db;
 
     public ListItemAdapter(Context context) {
         db = new ListItemDao(context);
@@ -30,20 +32,20 @@ public class ListItemAdapter extends RecyclerView
         return listItems;
     }
 
-    public void setListItems(List<ListItem> items) {
-        listItems = items;
-    }
-
     public void setListItems(long grocery_list_id) {
         listItems = db.getListItems(grocery_list_id);
+    }
+
+    public void setListItems(List<ListItem> items) {
+        listItems = items;
     }
 
     public ListItem addListItem(ListItem item) {
         return db.addListItem(item);
     }
 
-    public void updateListItemQuantity(ListItem item, int quantity) {
-        db.updateListItemQuantity(item, quantity);
+    public void updateListItem(ListItem item) {
+        db.updateListItem(item);
     }
 
     @Override
@@ -62,6 +64,7 @@ public class ListItemAdapter extends RecyclerView
         holder.itemType.setText(listItems.get(position).getItem().getItemType().getName());
         holder.quantity.setText("" + listItems.get(position).getQuantity());
         holder.checked.setChecked(listItems.get(position).isChecked());
+        holder.listItem = listItems.get(position);
     }
 
     @Override
@@ -92,6 +95,7 @@ public class ListItemAdapter extends RecyclerView
         TextView itemType;
         TextView quantity;
         CheckBox checked;
+        ListItem listItem;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
@@ -99,6 +103,17 @@ public class ListItemAdapter extends RecyclerView
             itemType = (TextView) itemView.findViewById(R.id.listItemTypeViewItem);
             quantity = (TextView) itemView.findViewById(R.id.listItemQuantityViewItem);
             checked = (CheckBox) itemView.findViewById(R.id.listItemCheckedViewItem);
+
+            checked.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (listItem != null) {
+                        listItem.setChecked(isChecked);
+                        db.updateListItem(listItem);
+                        Log.i(LOG_TAG, " Clicked on Checked " + listItem.getId() + listItem.isChecked());
+                    }
+                }
+            });
             itemView.setOnClickListener(this);
         }
 

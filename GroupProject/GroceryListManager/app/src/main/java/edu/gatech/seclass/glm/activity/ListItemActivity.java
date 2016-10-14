@@ -119,7 +119,8 @@ public class ListItemActivity extends AppCompatActivity {
         public void onClick(DialogInterface dialog, int which) {
             if (!delete) {
                 quantity = Integer.valueOf(input.getText().toString());
-                mAdapter.updateListItemQuantity(listItem, quantity);
+                listItem.setQuantity(quantity);
+                mAdapter.updateListItem(listItem);
             } else {
                 mAdapter.deleteListItem(listItem.getId());
             }
