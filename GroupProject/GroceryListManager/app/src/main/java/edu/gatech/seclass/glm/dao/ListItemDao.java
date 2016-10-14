@@ -120,4 +120,12 @@ public class ListItemDao extends SQLiteOpenHelper {
         listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
         return listitem;
     }
+
+    public void deleteListItem(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "DELETE FROM " + DBContract.ListItem.TABLE_NAME +
+                " WHERE " + DBContract.ListItem._ID + " = " + id;
+        db.execSQL(sql);
+        db.close();
+    }
 }

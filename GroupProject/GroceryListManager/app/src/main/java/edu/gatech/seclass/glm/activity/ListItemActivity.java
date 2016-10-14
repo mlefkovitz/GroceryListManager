@@ -95,31 +95,33 @@ public class ListItemActivity extends AppCompatActivity {
         input.setInputType(InputType.TYPE_CLASS_NUMBER);
         input.setHint("Quantity");
         alertDialogBuilder.setView(input);
-        UpdateQuantityListener setListener = new UpdateQuantityListener(input, newListItem, false);
-        UpdateQuantityListener cancelListener = new UpdateQuantityListener(input, newListItem, true);
+        UpdateDeleteListItemListener setListener = new UpdateDeleteListItemListener(input, newListItem, false);
+        UpdateDeleteListItemListener deleteListener = new UpdateDeleteListItemListener(input, newListItem, true);
         alertDialogBuilder.setPositiveButton("Update", setListener);
-        alertDialogBuilder.setNegativeButton("Delete", cancelListener);
+        alertDialogBuilder.setNegativeButton("Delete", deleteListener);
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
 
-    private class UpdateQuantityListener implements DialogInterface.OnClickListener {
+    private class UpdateDeleteListItemListener implements DialogInterface.OnClickListener {
         int quantity = 0;
         ListItem listItem;
         EditText input;
-        boolean cancel = true;
+        boolean delete = true;
 
-        public UpdateQuantityListener(EditText input, ListItem listItem, boolean cancel) {
+        public UpdateDeleteListItemListener(EditText input, ListItem listItem, boolean delete) {
             this.input = input;
-            this.cancel = cancel;
+            this.delete = delete;
             this.listItem = mAdapter.addListItem(listItem);
         }
 
         @Override
         public void onClick(DialogInterface dialog, int which) {
-            if (!cancel) {
+            if (!delete) {
                 quantity = Integer.valueOf(input.getText().toString());
                 mAdapter.updateListItemQuantity(listItem, quantity);
+            } else {
+                mAdapter.deleteListItem(listItem.getId());
             }
             mAdapter.setListItems(listItem.getGroceryListId());
             mRecyclerView.setAdapter(mAdapter);

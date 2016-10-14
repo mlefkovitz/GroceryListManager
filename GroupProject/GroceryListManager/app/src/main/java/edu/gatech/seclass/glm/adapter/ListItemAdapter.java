@@ -30,12 +30,12 @@ public class ListItemAdapter extends RecyclerView
         return listItems;
     }
 
-    public void setListItems(long grocery_list_id) {
-        listItems = db.getListItems(grocery_list_id);
-    }
-
     public void setListItems(List<ListItem> items) {
         listItems = items;
+    }
+
+    public void setListItems(long grocery_list_id) {
+        listItems = db.getListItems(grocery_list_id);
     }
 
     public ListItem addListItem(ListItem item) {
@@ -75,6 +75,10 @@ public class ListItemAdapter extends RecyclerView
 
     public ListItem getListItem(int id) {
         return db.getListItem(id);
+    }
+
+    public void deleteListItem(long id) {
+        db.deleteListItem(id);
     }
 
     public interface MyClickListener {
