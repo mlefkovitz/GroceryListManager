@@ -88,24 +88,13 @@ public class ListItemDao extends SQLiteOpenHelper {
         return listitem;
     }
 
-//    public void updateListItem(ListItem item, int quantity) {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        String sql = "UPDATE " + DBContract.ListItem.TABLE_NAME +
-//                " SET " + DBContract.ListItem.COLUMN_QUANTITY + " = " + quantity +
-//                " WHERE " + DBContract.ListItem._ID + " = " + item.getId();
-//        db.execSQL(sql);
-//        db.close();
-//    }
-
     public void updateListItem(ListItem item) {
-        ListItem before = getListItem(item.getId());
         SQLiteDatabase db = this.getWritableDatabase();
         String sql = "UPDATE " + DBContract.ListItem.TABLE_NAME +
                 " SET " + DBContract.ListItem.COLUMN_QUANTITY + " = " + item.getQuantity() +
                 " , " + DBContract.ListItem.COLUMN_CHECKED + " = " + (item.isChecked() ? 1 : 0) +
                 " WHERE " + DBContract.ListItem._ID + " = " + item.getId();
         db.execSQL(sql);
-        ListItem after = getListItem(item.getId());
         db.close();
     }
 
@@ -119,6 +108,15 @@ public class ListItemDao extends SQLiteOpenHelper {
             listitem = mapListItem(cursor);
         }
         return listitem;
+    }
+
+    public void uncheckAll(long groceryListId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String sql = "UPDATE " + DBContract.ListItem.TABLE_NAME +
+                " SET " + DBContract.ListItem.COLUMN_CHECKED + " = " + 0 +
+                " WHERE " + DBContract.ListItem.COLUMN_GROCERY_LIST_ID + " = " + groceryListId;
+        db.execSQL(sql);
+        db.close();
     }
 
     @NonNull

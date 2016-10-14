@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -41,6 +40,9 @@ public class ListItemActivity extends AppCompatActivity {
         Button buttonAdd = (Button) findViewById(R.id.buttonAdd);
         buttonAdd.setOnClickListener(new AddNewItemListener());
 
+        Button buttonUncheckAll = (Button) findViewById(R.id.buttonUncheckAll);
+        buttonUncheckAll.setOnClickListener(new UncheckAllListener());
+
         mLayoutManager = new LinearLayoutManager(this);
         Intent intent = getIntent();
         long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
@@ -65,7 +67,6 @@ public class ListItemActivity extends AppCompatActivity {
        mAdapter.setOnItemClickListener(new ListItemAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
-                Log.i(LOG_TAG, " Clicked on ListItem " + position);
                 ListItem newListItem = mAdapter.getListItem(position);
                 showUpdateListItemDialog(newListItem);
             }
@@ -118,9 +119,12 @@ public class ListItemActivity extends AppCompatActivity {
         @Override
         public void onClick(DialogInterface dialog, int which) {
             if (!delete) {
-                quantity = Integer.valueOf(input.getText().toString());
-                listItem.setQuantity(quantity);
-                mAdapter.updateListItem(listItem);
+                try {
+                    quantity = Integer.valueOf(input.getText().toString());
+                    listItem.setQuantity(quantity);
+                    mAdapter.updateListItem(listItem);
+                } catch (Exception e) {
+                }
             } else {
                 mAdapter.deleteListItem(listItem.getId());
             }
@@ -143,6 +147,17 @@ public class ListItemActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(ListItemActivity.this, edu.gatech.seclass.glm.activity.ItemActivity.class);
             startActivityForResult(intent, 1);
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
+    private class UncheckAllListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            Intent intent = getIntent();
+            long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
+            mAdapter.uncheckAll(grocery_list_id);
+            mAdapter.setListItems(grocery_list_id);
             mRecyclerView.setAdapter(mAdapter);
         }
     }
