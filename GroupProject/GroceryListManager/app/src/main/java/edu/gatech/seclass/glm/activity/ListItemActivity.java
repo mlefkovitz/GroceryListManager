@@ -1,11 +1,14 @@
 package edu.gatech.seclass.glm.activity;
 
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -73,16 +76,51 @@ public class ListItemActivity extends AppCompatActivity {
             if (resultCode == Activity.RESULT_OK) {
                 long grocery_list_id = Long.valueOf(getIntent().getStringExtra("GROCERY_LIST_ID"));
                 long item_id = Long.valueOf(data.getStringExtra("ITEM_ID"));
-                Log.i(LOG_TAG, " INSERT " + grocery_list_id + " " + item_id);
                 ListItem newListItem = new ListItem();
                 newListItem.setGroceryListId(grocery_list_id);
                 newListItem.setItemId(item_id);
-                mAdapter.addListItem(newListItem);
-                mRecyclerView.setAdapter(mAdapter);
+
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                alertDialogBuilder.setTitle("Select Quantity");
+
+                final EditText input = new EditText(this);
+                input.setInputType(InputType.TYPE_CLASS_NUMBER);
+                alertDialogBuilder.setView(input);
+
+                UpdateQuantityListener setListener = new UpdateQuantityListener(input, newListItem, false);
+                UpdateQuantityListener cancelListener = new UpdateQuantityListener(input, newListItem, true);
+
+                alertDialogBuilder.setPositiveButton("Set", setListener);
+//                alertDialogBuilder.setNegativeButton("Cancel", cancelListener);
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
             }
             if (resultCode == Activity.RESULT_CANCELED) {
                 //Write your code if there's no result
             }
+        }
+    }
+
+    private class UpdateQuantityListener implements DialogInterface.OnClickListener {
+        int quantity = 0;
+        ListItem listItem;
+        EditText input;
+        boolean cancel = true;
+
+        public UpdateQuantityListener(EditText input, ListItem listItem, boolean cancel) {
+            this.input = input;
+            this.cancel = cancel;
+            this.listItem = mAdapter.addListItem(listItem);
+
+        }
+
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if (!cancel) {
+                quantity = Integer.valueOf(input.getText().toString());
+                mAdapter.updateListItemQuantity(listItem, quantity);
+            }
+            mRecyclerView.setAdapter(mAdapter);
         }
     }
 

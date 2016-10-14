@@ -30,16 +30,20 @@ public class ListItemAdapter extends RecyclerView
         return this.listItems;
     }
 
-    public void setListItems(long grocery_list_id) {
-        this.listItems = db.getListItems(grocery_list_id);
-    }
-
     public void setListItems(List<ListItem> items) {
         this.listItems = items;
     }
 
-    public void addListItem(ListItem item) {
-        db.addListItem(item);
+    public void setListItems(long grocery_list_id) {
+        this.listItems = db.getListItems(grocery_list_id);
+    }
+
+    public ListItem addListItem(ListItem item) {
+        return db.addListItem(item);
+    }
+
+    public void updateListItemQuantity(ListItem item, int quantity) {
+        db.updateListItemQuantity(item, quantity);
     }
 
     @Override
