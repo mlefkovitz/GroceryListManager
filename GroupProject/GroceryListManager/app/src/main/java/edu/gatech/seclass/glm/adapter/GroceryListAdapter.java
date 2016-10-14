@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import edu.gatech.seclass.glm.MainActivity;
 import edu.gatech.seclass.glm.R;
-import edu.gatech.seclass.glm.dao.GroceryListDao;
 import edu.gatech.seclass.glm.model.GroceryList;
 
 /**
@@ -22,27 +22,26 @@ public class GroceryListAdapter extends RecyclerView
     private static String LOG_TAG = "GroceryListAdapter";
     private static MyClickListener myClickListener;
     private static List<GroceryList> groceryLists;
-    private static GroceryListDao db;
+
 
     public GroceryListAdapter(Context context) {
-        db = new GroceryListDao(context);
         setGroceryLists("");
     }
 
     public static void setGroceryLists(String name) {
-        groceryLists = db.getGroceryLists(name);
+        groceryLists = MainActivity.groceryListDao.getGroceryLists(name);
     }
 
     public static void updateGroceryList(long id, String name) {
-        db.updateGroceryList(id, name);
+        MainActivity.groceryListDao.updateGroceryList(id, name);
     }
 
     public static void deleteGroceryList(long id) {
-        db.deleteGroceryList(id);
+        MainActivity.groceryListDao.deleteGroceryList(id);
     }
 
     public void addGroceryList(GroceryList groceryList){
-        db.addGroceryList(groceryList);
+        MainActivity.groceryListDao.addGroceryList(groceryList);
         setGroceryLists("");
     }
 

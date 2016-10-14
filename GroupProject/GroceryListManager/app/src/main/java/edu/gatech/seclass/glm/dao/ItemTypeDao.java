@@ -63,7 +63,6 @@ public class ItemTypeDao extends SQLiteOpenHelper {
 
         itemTypeList = new ArrayList<ItemType>();
         SQLiteDatabase db = this.getReadableDatabase();
-//        onUpgrade(db,1,1);
         String[] selectionArgs = {"%" + name + "%"};
         Cursor cursor = db.rawQuery(selectQuery, selectionArgs);
         // looping through all rows and adding to list
@@ -72,7 +71,6 @@ public class ItemTypeDao extends SQLiteOpenHelper {
                 ItemType itemType = new ItemType();
                 itemType.setId(Integer.parseInt(cursor.getString(0)));
                 itemType.setName(cursor.getString(1));
-                // Adding contact to list
                 itemTypeList.add(itemType);
             } while (cursor.moveToNext());
         }

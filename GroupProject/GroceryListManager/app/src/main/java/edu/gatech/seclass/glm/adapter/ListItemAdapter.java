@@ -23,6 +23,7 @@ public class ListItemAdapter extends RecyclerView
     private static List<ListItem> listItems;
     private static ListItemDao db;
 
+
     public ListItemAdapter(Context context) {
         db = new ListItemDao(context);
     }

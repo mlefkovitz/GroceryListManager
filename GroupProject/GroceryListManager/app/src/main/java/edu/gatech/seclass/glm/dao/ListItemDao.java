@@ -10,17 +10,17 @@ import android.support.annotation.NonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.gatech.seclass.glm.MainActivity;
 import edu.gatech.seclass.glm.model.ListItem;
 
 /**
  * Created by shazamW81 on 10/11/2016.
  */
 public class ListItemDao extends SQLiteOpenHelper {
-    private static ItemDao itemDao;
+
 
     public ListItemDao(Context context) {
         super(context, DBContract.DATABASE_NAME, null, DBContract.DATABASE_VERSION);
-        itemDao = new ItemDao(context);
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
@@ -134,7 +134,7 @@ public class ListItemDao extends SQLiteOpenHelper {
         listitem.setQuantity(Integer.parseInt(cursor.getString(1)));
         listitem.setChecked(cursor.getInt(2) == 1);
         listitem.setItemId(cursor.getLong(3));
-        listitem.setItem(itemDao.getItem(cursor.getLong(3)));
+        listitem.setItem(MainActivity.itemDao.getItem(cursor.getLong(3)));
         listitem.setGroceryListId(Integer.parseInt(cursor.getString(4)));
         return listitem;
     }

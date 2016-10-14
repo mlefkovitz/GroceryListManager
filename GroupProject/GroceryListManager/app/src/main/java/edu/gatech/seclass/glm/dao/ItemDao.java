@@ -9,15 +9,14 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.gatech.seclass.glm.MainActivity;
 import edu.gatech.seclass.glm.model.Item;
 
 public class ItemDao extends SQLiteOpenHelper {
     public static final String[] DEFAULT_ITEM = {"Apples", "Bananas", "Beef", "Chicken", "Candy", "Nuts"};
-    private static ItemTypeDao itemTypeDao;
 
     public ItemDao(Context context) {
         super(context, DBContract.DATABASE_NAME, null, DBContract.DATABASE_VERSION);
-        itemTypeDao = new ItemTypeDao(context);
     }
 
     @Override
@@ -26,7 +25,7 @@ public class ItemDao extends SQLiteOpenHelper {
         for (String type : DEFAULT_ITEM) {
             Item item = new Item();
             item.setName(type);
-            item.setItemTypeId(itemTypeDao.getRandomType().getId());
+            item.setItemTypeId(MainActivity.itemTypeDao.getRandomType().getId());
             addItem(item);
         }
     }
@@ -80,7 +79,7 @@ public class ItemDao extends SQLiteOpenHelper {
                 item.setName(cursor.getString(1));
                 long itemTypeId = cursor.getLong(3);
                 item.setItemTypeId(itemTypeId);
-                item.setItemType(itemTypeDao.getItemType(itemTypeId));
+                item.setItemType(MainActivity.itemTypeDao.getItemType(itemTypeId));
                 itemList.add(item);
             } while (cursor.moveToNext());
         }
@@ -102,7 +101,7 @@ public class ItemDao extends SQLiteOpenHelper {
             result.setName(cursor.getString(1));
             long itemTypeId = cursor.getLong(3);
             result.setItemTypeId(itemTypeId);
-            result.setItemType(itemTypeDao.getItemType(itemTypeId));
+            result.setItemType(MainActivity.itemTypeDao.getItemType(itemTypeId));
         }
         return result;
     }
@@ -119,7 +118,7 @@ public class ItemDao extends SQLiteOpenHelper {
             result.setName(cursor.getString(1));
             long itemTypeId = cursor.getLong(3);
             result.setItemTypeId(itemTypeId);
-            result.setItemType(itemTypeDao.getItemType(itemTypeId));
+            result.setItemType(MainActivity.itemTypeDao.getItemType(itemTypeId));
         }
         return result;
     }

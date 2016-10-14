@@ -11,7 +11,6 @@ import android.widget.EditText;
 
 import edu.gatech.seclass.glm.R;
 import edu.gatech.seclass.glm.adapter.GroceryListAdapter;
-import edu.gatech.seclass.glm.dao.GroceryListDao;
 import edu.gatech.seclass.glm.model.GroceryList;
 import edu.gatech.seclass.glm.util.DividerItemDecoration;
 
@@ -22,7 +21,6 @@ public class GroceryListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private GroceryListAdapter mAdapter;
-    private GroceryListDao db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +65,7 @@ public class GroceryListActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             String name = groceryListNameValue.getText().toString();
-            mAdapter.setGroceryLists(name);
+            GroceryListAdapter.setGroceryLists(name);
             mRecyclerView.setAdapter(mAdapter);
         }
     }
