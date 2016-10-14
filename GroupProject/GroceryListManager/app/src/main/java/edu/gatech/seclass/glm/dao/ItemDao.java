@@ -38,7 +38,7 @@ public class ItemDao extends SQLiteOpenHelper {
     }
 
     // Adding new items
-    public void addItem(Item item) {
+    public Item addItem(Item item) {
         SQLiteDatabase db = this.getWritableDatabase();
         Item newItem = getItem(item.getName());
         if (newItem == null) {
@@ -48,6 +48,7 @@ public class ItemDao extends SQLiteOpenHelper {
             db.insert(DBContract.Item.TABLE_NAME, null, values);
         }
         db.close();
+        return getItem(item.getName());
     }
 
     public List<Item> getItems() {

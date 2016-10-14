@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import edu.gatech.seclass.glm.R;
+import edu.gatech.seclass.glm.adapter.GroceryListAdapter;
 import edu.gatech.seclass.glm.adapter.ListItemAdapter;
 import edu.gatech.seclass.glm.dao.ListItemDao;
 import edu.gatech.seclass.glm.model.ListItem;
@@ -22,16 +23,37 @@ import edu.gatech.seclass.glm.util.DividerItemDecoration;
 public class ListItemActivity extends AppCompatActivity {
 
     private static String LOG_TAG = "ListItemActivity";
+    private static long selectedItemId;
+    private static long selectedGroceryListId;
+    EditText listRenameValue;
     EditText listItemNameValue;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private ListItemAdapter mAdapter;
+    private GroceryListAdapter groceryListAdapter;
     private ListItemDao db;
+
+    public static void setSelectedItemId(long id) {
+        selectedItemId = id;
+    }
+
+    public static void setSelectedGroceryListId(long id) {
+        selectedGroceryListId = id;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_item_activity);
+
+        listRenameValue = (EditText) findViewById(R.id.listRenameValue);
+
+        Button buttonRenameList = (Button) findViewById(R.id.buttonRenameList);
+        buttonRenameList.setOnClickListener(new RenameListListener());
+
+        Button buttonDeleteList = (Button) findViewById(R.id.buttonDeleteList);
+        buttonDeleteList.setOnClickListener(new DeleteListListener());
+
         listItemNameValue = (EditText) findViewById(R.id.listItemNameValue);
 
         Button buttonCompute = (Button) findViewById(R.id.buttonSearch);
@@ -45,8 +67,9 @@ public class ListItemActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);
         Intent intent = getIntent();
-        long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
+        long grocery_list_id = selectedGroceryListId;
         mAdapter = new ListItemAdapter(this);
+        groceryListAdapter = new GroceryListAdapter(this);
         mAdapter.setListItems(grocery_list_id);
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_item_view);
@@ -61,10 +84,10 @@ public class ListItemActivity extends AppCompatActivity {
 
     }
 
-   @Override
+    @Override
     protected void onResume() {
         super.onResume();
-       mAdapter.setOnItemClickListener(new ListItemAdapter.MyClickListener() {
+        mAdapter.setOnItemClickListener(new ListItemAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
                 ListItem newListItem = mAdapter.getListItem(position);
@@ -77,15 +100,11 @@ public class ListItemActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                long grocery_list_id = Long.valueOf(getIntent().getStringExtra("GROCERY_LIST_ID"));
-                long item_id = Long.valueOf(data.getStringExtra("ITEM_ID"));
                 ListItem newListItem = new ListItem();
-                newListItem.setGroceryListId(grocery_list_id);
-                newListItem.setItemId(item_id);
+                newListItem.setGroceryListId(selectedGroceryListId);
+                newListItem.setItemId(selectedItemId);
+                mAdapter.addListItem(newListItem);
                 showUpdateListItemDialog(newListItem);
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
             }
         }
     }
@@ -136,8 +155,8 @@ public class ListItemActivity extends AppCompatActivity {
     private class SearchListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            long grocery_list_id = Long.valueOf(getIntent().getStringExtra("GROCERY_LIST_ID"));
-            mAdapter.setListItems(grocery_list_id);
+            String name = listItemNameValue.getText().toString();
+            mAdapter.setListItems(selectedGroceryListId, name);
             mRecyclerView.setAdapter(mAdapter);
         }
     }
@@ -147,18 +166,36 @@ public class ListItemActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(ListItemActivity.this, edu.gatech.seclass.glm.activity.ItemActivity.class);
             startActivityForResult(intent, 1);
-            mRecyclerView.setAdapter(mAdapter);
         }
     }
 
     private class UncheckAllListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            Intent intent = getIntent();
-            long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
-            mAdapter.uncheckAll(grocery_list_id);
-            mAdapter.setListItems(grocery_list_id);
+            mAdapter.uncheckAll(selectedGroceryListId);
+            mAdapter.setListItems(selectedGroceryListId);
             mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
+    private class RenameListListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            String name = listRenameValue.getText().toString();
+            if (name != null && !name.isEmpty()) {
+                GroceryListAdapter.updateGroceryList(selectedGroceryListId, name);
+                Intent intent = new Intent(ListItemActivity.this, ListItemActivity.class);
+                startActivity(intent);
+            }
+        }
+    }
+
+    private class DeleteListListener implements View.OnClickListener {
+        @Override
+        public void onClick(View v) {
+            GroceryListAdapter.deleteGroceryList(selectedGroceryListId);
+            Intent intent = new Intent(ListItemActivity.this, GroceryListActivity.class);
+            startActivity(intent);
         }
     }
 }

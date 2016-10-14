@@ -26,21 +26,12 @@ public class ItemAdapter extends RecyclerView
         setItems("");
     }
 
-    public List<Item> getItems() {
-        return items;
-    }
-
     public void setItems(String name) {
         items = db.getItems(name);
     }
 
-    public void setItems(List<Item> items) {
-        ItemAdapter.items = items;
-    }
-
-    public void addItem(Item item){
-        db.addItem(item);
-        setItems("");
+    public Item addItem(Item item) {
+        return db.addItem(item);
     }
 
     @Override

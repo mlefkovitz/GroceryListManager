@@ -22,27 +22,23 @@ public class GroceryListAdapter extends RecyclerView
     private static String LOG_TAG = "GroceryListAdapter";
     private static MyClickListener myClickListener;
     private static List<GroceryList> groceryLists;
-    private GroceryListDao db;
+    private static GroceryListDao db;
 
     public GroceryListAdapter(Context context) {
         db = new GroceryListDao(context);
         setGroceryLists("");
     }
 
-    public List<GroceryList> getGroceryLists() {
-        return groceryLists;
-    }
-
-    public void setGroceryLists(String name) {
+    public static void setGroceryLists(String name) {
         groceryLists = db.getGroceryLists(name);
     }
 
-    public void setGroceryLists(List<GroceryList> groceryLists) {
-        GroceryListAdapter.groceryLists = groceryLists;
+    public static void updateGroceryList(long id, String name) {
+        db.updateGroceryList(id, name);
     }
 
-    public GroceryList getGroceryList(long pos) {
-        return groceryLists.get((int) pos);
+    public static void deleteGroceryList(long id) {
+        db.deleteGroceryList(id);
     }
 
     public void addGroceryList(GroceryList groceryList){

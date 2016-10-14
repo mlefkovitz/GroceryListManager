@@ -57,7 +57,7 @@ public class GroceryListActivity extends AppCompatActivity {
                  @Override
                  public void onItemClick(int position, View v) {
                      Intent intent = new Intent(GroceryListActivity.this, edu.gatech.seclass.glm.activity.ListItemActivity.class);
-                     intent.putExtra("GROCERY_LIST_ID", "" + position);
+                     ListItemActivity.setSelectedGroceryListId(position);
                      startActivity(intent);
             }
          });
