@@ -2,7 +2,6 @@ package edu.gatech.seclass.glm.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,7 @@ public class ItemTypeAdapter extends RecyclerView
         .DataObjectHolder>{
     private static String LOG_TAG = "ItemTypeAdapter";
     private static MyClickListener myClickListener;
-    private List<ItemType> itemTypes;
+    private static List<ItemType> itemTypes;
     private ItemTypeDao db;
 
     public ItemTypeAdapter(Context context) {
@@ -30,16 +29,8 @@ public class ItemTypeAdapter extends RecyclerView
         setItemTypes("");
     }
 
-    public List<ItemType> getItemTypes() {
-        return this.itemTypes;
-    }
-
-    public void setItemTypes(List<ItemType> itemTypes) {
-        this.itemTypes = itemTypes;
-    }
-
     public void setItemTypes(String name) {
-        this.itemTypes = db.getItemTypes(name);
+        itemTypes = db.getItemTypes(name);
     }
 
     public void addItemType(ItemType itemType){
@@ -83,13 +74,14 @@ public class ItemTypeAdapter extends RecyclerView
         public DataObjectHolder(View itemView) {
             super(itemView);
             name = (TextView) itemView.findViewById(R.id.itemTypeViewItem);
-            Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            myClickListener.onItemClick(getPosition(), v);
+            int pos = getPosition();
+            long id = itemTypes.get(pos).getId();
+            myClickListener.onItemClick((int) id, v);
         }
     }
 }

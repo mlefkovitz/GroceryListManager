@@ -1,10 +1,11 @@
 package edu.gatech.seclass.glm.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,13 +18,12 @@ import edu.gatech.seclass.glm.util.DividerItemDecoration;
 
 public class ItemTypeActivity extends AppCompatActivity {
 
+    private static String LOG_TAG = "ItemTypeActivity";
+    EditText itemTypeNameValue;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private static String LOG_TAG = "ItemTypeActivity";
     private ItemTypeAdapter mAdapter;
     private ItemTypeDao db;
-
-    EditText itemTypeNameValue;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +57,10 @@ public class ItemTypeActivity extends AppCompatActivity {
         mAdapter.setOnItemClickListener(new ItemTypeAdapter.MyClickListener() {
                  @Override
                  public void onItemClick(int position, View v) {
-                 Log.i(LOG_TAG, " Clicked on Item " + position);
+                     Intent returnIntent = new Intent();
+                     ItemActivity.setSelectedItemTypeId(position);
+                     setResult(Activity.RESULT_OK, returnIntent);
+                     finish();
             }
          });
     }

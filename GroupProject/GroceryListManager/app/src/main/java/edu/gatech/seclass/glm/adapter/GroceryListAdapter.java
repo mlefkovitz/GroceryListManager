@@ -29,20 +29,8 @@ public class GroceryListAdapter extends RecyclerView
         setGroceryLists("");
     }
 
-    public List<GroceryList> getGroceryLists() {
-        return groceryLists;
-    }
-
     public void setGroceryLists(String name) {
         groceryLists = db.getGroceryLists(name);
-    }
-
-    public void setGroceryLists(List<GroceryList> groceryLists) {
-        GroceryListAdapter.groceryLists = groceryLists;
-    }
-
-    public GroceryList getGroceryList(long pos) {
-        return groceryLists.get((int) pos);
     }
 
     public void addGroceryList(GroceryList groceryList){

@@ -2,7 +2,6 @@ package edu.gatech.seclass.glm.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,14 +25,6 @@ public class ListItemAdapter extends RecyclerView
 
     public ListItemAdapter(Context context) {
         db = new ListItemDao(context);
-    }
-
-    public List<ListItem> getListItems() {
-        return listItems;
-    }
-
-    public void setListItems(List<ListItem> items) {
-        listItems = items;
     }
 
     public void setListItems(long grocery_list_id) {
@@ -114,7 +105,6 @@ public class ListItemAdapter extends RecyclerView
                     if (listItem != null) {
                         listItem.setChecked(isChecked);
                         db.updateListItem(listItem);
-                        Log.i(LOG_TAG, " Clicked on Checked " + listItem.getId() + listItem.isChecked());
                     }
                 }
             });

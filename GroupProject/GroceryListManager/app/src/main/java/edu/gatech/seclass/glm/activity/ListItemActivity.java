@@ -22,11 +22,21 @@ import edu.gatech.seclass.glm.util.DividerItemDecoration;
 public class ListItemActivity extends AppCompatActivity {
 
     private static String LOG_TAG = "ListItemActivity";
+    private static long selectedItemId;
+    private static long selectedGroceryListId;
     EditText listItemNameValue;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     private ListItemAdapter mAdapter;
     private ListItemDao db;
+
+    public static void setSelectedItemId(long id) {
+        selectedItemId = id;
+    }
+
+    public static void setSelectedGroceryListId(long id) {
+        selectedGroceryListId = id;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +55,7 @@ public class ListItemActivity extends AppCompatActivity {
 
         mLayoutManager = new LinearLayoutManager(this);
         Intent intent = getIntent();
-        long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
+        long grocery_list_id = selectedGroceryListId;
         mAdapter = new ListItemAdapter(this);
         mAdapter.setListItems(grocery_list_id);
 
@@ -61,10 +71,10 @@ public class ListItemActivity extends AppCompatActivity {
 
     }
 
-   @Override
+    @Override
     protected void onResume() {
         super.onResume();
-       mAdapter.setOnItemClickListener(new ListItemAdapter.MyClickListener() {
+        mAdapter.setOnItemClickListener(new ListItemAdapter.MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
                 ListItem newListItem = mAdapter.getListItem(position);
@@ -77,15 +87,11 @@ public class ListItemActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1) {
             if (resultCode == Activity.RESULT_OK) {
-                long grocery_list_id = Long.valueOf(getIntent().getStringExtra("GROCERY_LIST_ID"));
-                long item_id = Long.valueOf(data.getStringExtra("ITEM_ID"));
                 ListItem newListItem = new ListItem();
-                newListItem.setGroceryListId(grocery_list_id);
-                newListItem.setItemId(item_id);
+                newListItem.setGroceryListId(selectedGroceryListId);
+                newListItem.setItemId(selectedItemId);
+                mAdapter.addListItem(newListItem);
                 showUpdateListItemDialog(newListItem);
-            }
-            if (resultCode == Activity.RESULT_CANCELED) {
-                //Write your code if there's no result
             }
         }
     }
@@ -136,8 +142,7 @@ public class ListItemActivity extends AppCompatActivity {
     private class SearchListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            long grocery_list_id = Long.valueOf(getIntent().getStringExtra("GROCERY_LIST_ID"));
-            mAdapter.setListItems(grocery_list_id);
+            mAdapter.setListItems(selectedGroceryListId);
             mRecyclerView.setAdapter(mAdapter);
         }
     }
@@ -147,17 +152,14 @@ public class ListItemActivity extends AppCompatActivity {
         public void onClick(View v) {
             Intent intent = new Intent(ListItemActivity.this, edu.gatech.seclass.glm.activity.ItemActivity.class);
             startActivityForResult(intent, 1);
-            mRecyclerView.setAdapter(mAdapter);
         }
     }
 
     private class UncheckAllListener implements View.OnClickListener {
         @Override
         public void onClick(View v) {
-            Intent intent = getIntent();
-            long grocery_list_id = Long.valueOf(intent.getStringExtra("GROCERY_LIST_ID"));
-            mAdapter.uncheckAll(grocery_list_id);
-            mAdapter.setListItems(grocery_list_id);
+            mAdapter.uncheckAll(selectedGroceryListId);
+            mAdapter.setListItems(selectedGroceryListId);
             mRecyclerView.setAdapter(mAdapter);
         }
     }
