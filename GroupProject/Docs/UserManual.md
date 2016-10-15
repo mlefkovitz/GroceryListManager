@@ -16,7 +16,6 @@ The GroceryListManager application will handle the following:
 
  - **Create, Name, Delete and maintain multiple Grocery Lists**
  - **Allows a Grocery List to be "Selected"** 
- - 
  - **All the Data for the GroceryListManager will be maintained an a Database for the user**
  - **GroceryListManager will ensure that the Grocery List is save automatically after each change** 
  - **Users will be able to search  for an Items by name**
