@@ -39,6 +39,10 @@ public class ListItemActivity extends AppCompatActivity {
         selectedGroceryListId = id;
     }
 
+    public static long getSelectedGroceryListId() {
+        return selectedGroceryListId;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
