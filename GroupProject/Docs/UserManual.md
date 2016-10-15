@@ -65,9 +65,9 @@ The Grocery List Manager starts with a prompt to create or select a Grocery List
 Create a list by typing a list name into the box and selecting the Add button.
 
 In the photos below we create a new list named "New List":
-![Enter List Name](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List1.png)
-![Click Add](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List2.png)
-![New List Appears](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List3.png)
+![Enter List Name](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List1.PNG)
+![Click Add](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List2.PNG)
+![New List Appears](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Create-New-Grocery-List3.PNG)
 
 #### 4.1.2 Select a list  
 
@@ -83,8 +83,8 @@ Once you're home, you can reset the list by removing all check marks.
 If you're ready to change the name of the list, use the Rename button, at the top of the screen.
 
 In the photos below we change the name of "New List" to "The List":
-![Fill List Name box ](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Rename-Grocery-List1.png)
-![Click Rename once List Name is Ready](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Rename-Grocery-List2.png)
+![Fill List Name box ](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Rename-Grocery-List1.PNG)
+![Click Rename once List Name is Ready](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Rename-Grocery-List2.PNG)
 
 #### 4.2.1 Delete the list
 
