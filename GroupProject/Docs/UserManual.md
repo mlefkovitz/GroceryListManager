@@ -9,8 +9,7 @@ Brad and Janet, have requested a new grocery list application. They have been un
 
 After the review of our team's submission of our design based on the requirements provided by Brad and Janet.  They both are convinced to commission team 61 to produce the GroceryListManager.
 
-## 2.0 What does the GroceryListManager application do # 
-
+## 2.0 What does the GroceryListManager application do #
 
 The GroceryListManager application will handle the following:
 
@@ -25,7 +24,7 @@ The GroceryListManager application will handle the following:
  - **Users will be able to select Items categorized by Item Type from hierarchical list to:**
   -     Add Item to the selected Grocery List
   -     Delete Item from the selected Grocery List
-  -     Change the quantity of the Item within the selected Grocery List                                 -      _
+  -     Change the quantity of the Item within the selected Grocery List
 
 ## 3.0 Android's environment #
 
