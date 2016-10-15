@@ -24,6 +24,12 @@ public class GroceryListTest {
     @Test
     public void testSetId() throws Exception {
         grocery_list.setId(1);
-        Assert.assertEquals(grocery_list.getId(),1);
+        Assert.assertEquals(grocery_list.getId(), 1);
     }
+
+    @Test
+    public void testCreateList() throws Exception {
+        Assert.assertNotNull(grocery_list);
+    }
+
 }

@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         groceryListDao = new GroceryListDao(this);
-        itemDao = new ItemDao(this);
         itemTypeDao = new ItemTypeDao(this);
+        itemDao = new ItemDao(this);
         listItemDao = new ListItemDao(this);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
