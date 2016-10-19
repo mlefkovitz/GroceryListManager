@@ -18,14 +18,12 @@ public class GroceryListDao extends SQLiteOpenHelper {
 
     public GroceryListDao(Context context) {
         super(context, DBContract.DATABASE_NAME, null, DBContract.DATABASE_VERSION);
+        onCreate(this.getWritableDatabase());
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(DBContract.GroceryList.CREATE_TABLE);
-        sqLiteDatabase.execSQL(DBContract.Item.CREATE_TABLE);
-        sqLiteDatabase.execSQL(DBContract.ItemType.CREATE_TABLE);
-        sqLiteDatabase.execSQL(DBContract.ListItem.CREATE_TABLE);
     }
 
     @Override

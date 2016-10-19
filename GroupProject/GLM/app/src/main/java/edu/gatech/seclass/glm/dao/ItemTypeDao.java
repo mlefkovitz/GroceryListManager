@@ -16,20 +16,29 @@ import edu.gatech.seclass.glm.model.ItemType;
  * Created by thome127 on 10/9/16.
  */
 public class ItemTypeDao extends SQLiteOpenHelper {
-    public static final String[] DEFAULT_ITEM_TYPES = {"Dairy", "Cereals", "Meat"};
+    public static final String[] DEFAULT_ITEM_TYPES = {
+            "Fruit",
+            "Vegetables",
+            "Meat",
+            "Dairy",
+            "Breads",
+            "Grains",
+            "Sweets"
+    };;
 
     public ItemTypeDao(Context context) {
         super(context, DBContract.DATABASE_NAME, null, DBContract.DATABASE_VERSION);
-        for (String type : DEFAULT_ITEM_TYPES) {
-            ItemType itemType = new ItemType();
-            itemType.setName(type);
-            addItemType(itemType);
-        }
+        onCreate(this.getWritableDatabase());
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(DBContract.ItemType.CREATE_TABLE);
+        for (String type : DEFAULT_ITEM_TYPES) {
+            ItemType itemType = new ItemType();
+            itemType.setName(type);
+            addItemType(itemType);
+        }
     }
 
     @Override
