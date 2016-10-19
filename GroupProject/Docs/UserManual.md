@@ -38,7 +38,7 @@ The GroceryListManager does not support rotation/landscape view.
 The mobile should run one of the following supported Andriod OS versions
 
  - Android Kitkat ( 4.4 - 4.4.4)
- - Android Lolipop ( 5.0 - 5.1.1)
+ - Android Lollipop ( 5.0 - 5.1.1)
  - Android Marshmallow ( 6.0 - 6.0.1)
 
 ### 3.1 System environment:Hardware ###
