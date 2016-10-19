@@ -75,7 +75,7 @@ public class ListItemActivity extends AppCompatActivity {
         mAdapter.setListItems(grocery_list_id);
 
         listRenameValue = (EditText) findViewById(R.id.listRenameValue);
-        listRenameValue.setHint(MainActivity.groceryListDao.getGroceryList(selectedGroceryListId).getName());
+        listRenameValue.setText(MainActivity.groceryListDao.getGroceryList(selectedGroceryListId).getName());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_item_view);
         mRecyclerView.setHasFixedSize(true);

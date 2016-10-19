@@ -30,7 +30,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignTop="@+id/textView4"
-                            android:layout_weight="0.20"
+                            android:layout_weight="0.50"
                             android:text="Item"
                             android:textAlignment="textStart" />
 
@@ -38,7 +38,7 @@
                             android:id="@+id/ItemBox"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.40"
+                            android:layout_weight="0.50"
                             android:maxLines="1"
                             android:minLines="1" />
                 </LinearLayout>
@@ -53,20 +53,48 @@
 
                         <Button
                             android:id="@+id/buttonSearch"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.50"
                             android:layout_gravity="center_horizontal"
                             android:text="Search"
                             android:textAlignment="center" />
 
                         <Button
                             android:id="@+id/buttonAdd"
-                            android:layout_width="wrap_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_weight="0.50"
                             android:layout_gravity="center_horizontal"
                             android:text="Add"
                             android:textAlignment="center" />
 
+                </LinearLayout>
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/itemTypeViewItemHeader"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.60"
+                            android:text="Item Type"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:paddingLeft="@dimen/activity_horizontal_margin" />
+
+                        <TextView
+                            android:id="@+id/itemViewItemHeader"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.40"
+                            android:text="Item"
+                            android:textStyle="bold"
+                            android:textAllCaps="true"
+                            android:paddingLeft="@dimen/activity_horizontal_margin" />
                 </LinearLayout>
 
                 <android.support.v7.widget.RecyclerView
