@@ -27,7 +27,7 @@
                 android:id="@+id/listRenameValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.40"
+                android:layout_weight="0.50"
                 android:hint="List Name"
                 android:maxLines="1"
                 android:minLines="1" />
@@ -37,7 +37,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="0.30"
+                android:layout_weight="0.25"
                 android:text="Rename"
                 android:textAlignment="center" />
 
@@ -46,7 +46,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_weight="0.30"
+                android:layout_weight="0.25"
                 android:text="Delete"
                 android:textAlignment="center" />
         </LinearLayout>
@@ -59,23 +59,23 @@
             android:orientation="horizontal"
             android:weightSum="1">
 
-            <TextView
-                android:id="@+id/checkAmoutLabel"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignTop="@+id/textView4"
-                android:layout_weight="0.40"
-                android:text="List Item Name:"
-                android:textAlignment="textStart" />
-
             <EditText
                 android:id="@+id/listItemNameValue"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.60"
+                android:layout_weight="0.50"
+                android:hint="Item Name"
                 android:maxLines="1"
                 android:minLines="1" />
+
+            <Button
+                android:id="@+id/buttonSearch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.50"
+                android:layout_gravity="center_horizontal"
+                android:text="Search Item"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,28 +87,73 @@
             android:weightSum="1">
 
             <Button
-                android:id="@+id/buttonSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:text="Search Item"
-                android:textAlignment="center" />
-
-            <Button
                 android:id="@+id/buttonAdd"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.50"
                 android:layout_gravity="center_horizontal"
                 android:text="Add Item"
                 android:textAlignment="center" />
 
             <Button
                 android:id="@+id/buttonUncheckAll"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="0.50"
                 android:layout_gravity="center_horizontal"
                 android:text="Uncheck All"
                 android:textAlignment="center" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/listItemTypeViewItemHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:text="Item Type"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textAllCaps="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin" />
+
+            <TextView
+                android:id="@+id/listItemViewItemHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.30"
+                android:text="Item"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textAllCaps="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin" />
+
+            <TextView
+                android:id="@+id/listItemQuantityTypeViewItemHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:text="Qty"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textAllCaps="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin" />
+
+            <TextView
+                android:id="@+id/listItemCheckedViewItemHeader"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.20"
+                android:text="Chk"
+                android:textStyle="bold"
+                android:textAlignment="textStart"
+                android:textAllCaps="true"
+                android:paddingLeft="@dimen/activity_horizontal_margin" />
         </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
