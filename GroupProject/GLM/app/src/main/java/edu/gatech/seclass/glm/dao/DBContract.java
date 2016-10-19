@@ -7,7 +7,7 @@ import android.provider.BaseColumns;
  */
 public class DBContract {
     public static final int DATABASE_VERSION = 1;
-    public static final String DATABASE_NAME = "glm_db";
+    public static final String DATABASE_NAME = "glm.db";
 
     public static class GroceryList implements BaseColumns {
         public static final String TABLE_NAME = "grocery_list";

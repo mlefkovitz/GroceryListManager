@@ -11,23 +11,55 @@ import java.util.List;
 
 import edu.gatech.seclass.glm.MainActivity;
 import edu.gatech.seclass.glm.model.Item;
+import edu.gatech.seclass.glm.model.ItemType;
 
 public class ItemDao extends SQLiteOpenHelper {
-    public static final String[] DEFAULT_ITEM = {"Apples", "Bananas", "Beef", "Chicken", "Candy", "Nuts"};
+    public static final String[][] DEFAULT_ITEM = {{"Apple","Fruit"},
+            {"Banana","Fruit"},
+            {"Orange","Fruit"},
+            {"Carrot","Vegetables"},
+            {"Potato","Vegetables"},
+            {"Broccoli","Vegetables"},
+            {"Spinach","Vegetables"},
+            {"Chicken Breast","Meat"},
+            {"Chicken Thigh","Meat"},
+            {"Chicken Wings","Meat"},
+            {"Pork Loin","Meat"},
+            {"Pork Shoulder","Meat"},
+            {"Ground Beef","Meat"},
+            {"Beef for Stew","Meat"},
+            {"Steak","Meat"},
+            {"Whole Milk","Dairy"},
+            {"Skim Milk","Dairy"},
+            {"Whipping Cream","Dairy"},
+            {"Cheddar Cheese","Dairy"},
+            {"Whole Wheat","Breads"},
+            {"Sourdough","Breads"},
+            {"Pita","Breads"},
+            {"Bagel","Breads"},
+            {"Naan","Breads"},
+            {"Rice","Grains"},
+            {"Corn","Grains"},
+            {"Oats","Grains"},
+            {"M&Ms","Sweets"},
+            {"Twizzlers","Sweets"},
+            {"Sugar","Sweets"}};
 
     public ItemDao(Context context) {
         super(context, DBContract.DATABASE_NAME, null, DBContract.DATABASE_VERSION);
-        for (String type : DEFAULT_ITEM) {
-            Item item = new Item();
-            item.setName(type);
-            item.setItemTypeId(MainActivity.itemTypeDao.getRandomType().getId());
-            addItem(item);
-        }
+        onCreate(this.getWritableDatabase());
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(DBContract.Item.CREATE_TABLE);
+        for (String[] type : DEFAULT_ITEM) {
+            Item item = new Item();
+            item.setName(type[0]);
+            ItemType itemType = MainActivity.itemTypeDao.getItemType(type[1]);
+            item.setItemTypeId(itemType.getId());
+            addItem(item);
+        }
     }
 
     @Override

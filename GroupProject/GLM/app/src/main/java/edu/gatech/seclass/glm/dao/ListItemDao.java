@@ -21,6 +21,7 @@ public class ListItemDao extends SQLiteOpenHelper {
 
     public ListItemDao(Context context) {
         super(context, DBContract.DATABASE_NAME, null, DBContract.DATABASE_VERSION);
+        onCreate(this.getWritableDatabase());
     }
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
