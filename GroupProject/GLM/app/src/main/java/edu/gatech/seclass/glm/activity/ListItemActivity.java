@@ -12,7 +12,9 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import edu.gatech.seclass.glm.MainActivity;
 import edu.gatech.seclass.glm.R;
 import edu.gatech.seclass.glm.adapter.GroceryListAdapter;
 import edu.gatech.seclass.glm.adapter.ListItemAdapter;
@@ -48,8 +50,6 @@ public class ListItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.list_item_activity);
 
-        listRenameValue = (EditText) findViewById(R.id.listRenameValue);
-
         Button buttonRenameList = (Button) findViewById(R.id.buttonRenameList);
         buttonRenameList.setOnClickListener(new RenameListListener());
 
@@ -73,6 +73,9 @@ public class ListItemActivity extends AppCompatActivity {
         mAdapter = new ListItemAdapter(this);
         groceryListAdapter = new GroceryListAdapter(this);
         mAdapter.setListItems(grocery_list_id);
+
+        listRenameValue = (EditText) findViewById(R.id.listRenameValue);
+        listRenameValue.setHint(MainActivity.groceryListDao.getGroceryList(selectedGroceryListId).getName());
 
         mRecyclerView = (RecyclerView) findViewById(R.id.list_item_view);
         mRecyclerView.setHasFixedSize(true);
@@ -188,6 +191,10 @@ public class ListItemActivity extends AppCompatActivity {
                 GroceryListAdapter.updateGroceryList(selectedGroceryListId, name);
                 Intent intent = new Intent(ListItemActivity.this, ListItemActivity.class);
                 startActivity(intent);
+                CharSequence text = "Your list has been renamed to \""+name+"\"";
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(ListItemActivity.this, text, duration);
+                toast.show();
             }
         }
     }

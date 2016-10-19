@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import edu.gatech.seclass.glm.R;
 import edu.gatech.seclass.glm.adapter.ItemAdapter;
@@ -98,6 +99,12 @@ public class ItemActivity extends AppCompatActivity {
             String name = itemNameValue.getText().toString();
             mAdapter.setItems(name);
             mRecyclerView.setAdapter(mAdapter);
+            if(mAdapter.getItemCount()==0) {
+                CharSequence text = "\""+name+"\" item not found. Click the \"ADD\" button to add it to your list.";
+                int duration = Toast.LENGTH_LONG;
+                Toast toast = Toast.makeText(ItemActivity.this, text, duration);
+                toast.show();
+            }
         }
     }
 

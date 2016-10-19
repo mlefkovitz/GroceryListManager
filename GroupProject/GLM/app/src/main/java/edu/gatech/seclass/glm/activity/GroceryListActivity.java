@@ -20,7 +20,7 @@ public class GroceryListActivity extends AppCompatActivity {
     EditText groceryListNameValue;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
-    private GroceryListAdapter mAdapter;
+    private static GroceryListAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,17 +35,25 @@ public class GroceryListActivity extends AppCompatActivity {
         buttonAdd.setOnClickListener(new AddListener());
 
         mLayoutManager = new LinearLayoutManager(this);
-        mAdapter = new GroceryListAdapter(this);
-
         mRecyclerView = (RecyclerView) findViewById(R.id.grocery_list_view);
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+
+        resetAdapter();
 
         //Add Lines between elements
         RecyclerView.ItemDecoration itemDecoration =
                 new DividerItemDecoration(this, LinearLayoutManager.VERTICAL);
         mRecyclerView.addItemDecoration(itemDecoration);
+    }
+
+    public void resetAdapter() {
+        mAdapter = new GroceryListAdapter(this);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    public static void resetAdapterList() {
+        mAdapter.getItemCount();
     }
 
     @Override

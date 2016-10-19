@@ -85,4 +85,18 @@ public class GroceryListDao extends SQLiteOpenHelper {
         db.execSQL(sql);
         db.close();
     }
+
+    public GroceryList getGroceryList(long id) {
+        GroceryList result = null;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String sql = "Select * from " + DBContract.GroceryList.TABLE_NAME +
+                " WHERE " + DBContract.GroceryList._ID + " = " + id;
+        Cursor cursor = db.rawQuery(sql, null);
+        if (cursor.moveToFirst()) {
+            result = new GroceryList();
+            result.setId(cursor.getLong(0));
+            result.setName(cursor.getString(1));
+        }
+        return result;
+    }
 }
