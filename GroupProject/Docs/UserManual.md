@@ -104,31 +104,51 @@ When you create a new list it will be empty. Use the Add button to add a new ite
 
 When you click Add you'll be asked to select from a given list of items.
 
+![Select an Item to Add It](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Add-Item-To-Grocery-List.PNG)
+
 When you're ready to add an item, click on it and you'll be brought back to your list to select the quantity.
+
+![Select Item Quantity](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Select-Item-Quantity.PNG)
+
 
 #### 4.2.2.1 Search for an item by name
 
 You can use the search box to narrow down the list of items presented. Enter the name of the item you're looking for and hit search.  
 
+![Search for Items](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Search-For-Items-To-Add-To-Grocery-List.PNG)
+
+
 #### 4.2.2.2 Add a new item to the list of items
 
 If you can't find the item you're looking for, you can add it using the Add button.
 
+![Items Not Found?](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Search-Item-Not-Found.PNG)
+
 You'll be asked to select an item type. Once selected, the item will be added your grocery list and you'll be brought back to your list to select the quantity.
 
+![Select Item Type](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Select-Item-Type.PNG)
+
 Items added this way will be available to all grocery lists. 
+
+![Item available to all grocery lists](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Item-Added-To-Item-List.PNG)
 
 #### 4.2.3 Change an Item's Quantity
 
 Click on an item to change its quantity.
 
+![ChangeItem Quantity](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Select-Item-Quantity.PNG)
+
 #### 4.2.4 Delete an Item
 
 Click on an item to launch the prompt to delete the item.
 
+![Delete Item](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Select-Item-Quantity.PNG)
+
 #### 4.2.5  Check an Item
 
 Click on an item's checkbox to check the item.
+
+![Check an Item](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/UserManualImages/Item-Checked.PNG)
 
 #### 4.2.6 Clear All Check Boxes
 
