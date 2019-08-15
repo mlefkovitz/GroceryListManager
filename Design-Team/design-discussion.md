@@ -1,6 +1,6 @@
 Design 1
 ========
-![image of design 1](/../Design-Individual/ethomas32/design.png)
+![image of design 1](https://github.com/mlefkovitz/GroceryListManager/blob/master/Design-Individual/ethomas32/design.png)
 
 * Pros
     * Simple and concise.
@@ -13,7 +13,7 @@ Design 1
 
 Design 2
 ========
-![image of design 2](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Design-Individual/gth836x/design.png)
+![image of design 2](https://github.com/mlefkovitz/GroceryListManager/blob/master/Design-Individual/gth836x/design.png)
 
 * Pros
     * Simple and concise
@@ -26,7 +26,7 @@ Design 2
 
 Design 3
 ========
-![image of design 3](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Design-Individual/samid3/design.png)
+![image of design 3](https://github.com/mlefkovitz/GroceryListManager/blob/master/Design-Individual/samid3/design.png)
 
 * Pros
     * Very detailed
@@ -38,7 +38,7 @@ Design 3
 
 Team Design
 ===========
-![image of team design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Design-Team/design-team.png)
+![image of team design](/Design-Team/design-team.png)
 
 `GroceryListManager` effectively performs the same role as `Shopper` and `GroceryListManager` in Designs 1 and 3, respectively; it enables a user to manage lists and search items. This functionality was included in `List` in Design 2, but the team agreed that it would be necessary for the manager object to be included. There is an aggregation between `GroceryListManager` and `List` since it manages many lists.
 

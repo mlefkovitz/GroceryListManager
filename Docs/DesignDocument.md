@@ -20,7 +20,7 @@ The application will only be deployed to Android phones and simulators. The appl
 
 ### 2.1 Component Diagram
 
-![image of design 1](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/component-diagram.png)
+![image of design 1](/component-diagram.png)
 This shows how the the application components are connected together. The **GroceryListManager** is the application component and contains the **GroceryLists**, **Items**, and **ItemTypes** components. 
 The only outside component is the **Database** which is connected to the **GroceryListManager** via two interfaces: **Search Database** and **Manage Database**. The **GroceryListManager** provides two interfaces: **ItemSearch** and **ManageLists**.
 
@@ -32,7 +32,7 @@ Since this is an isolated single-user application, no deployment diagram is need
 
 ### 3.1 Class Diagram
 
-![image of team design](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/design-team.png)
+![image of team design](https://github.com/mlefkovitz/GroceryListManager/blob/master/Design-Team/design-team.png)
 This shows the UML Class Diagram that the team created for the first deliverable of the project.
 
 ### 3.2 Other Diagrams
@@ -41,10 +41,10 @@ The group determined that no other diagrams were necessary. Sections 2.1, 3.1, a
 
 ## 4 User Interface Design
 
-![user flow diagram](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/user-flow-diagram.png)
+![user flow diagram](/user-flow-diagram.png)
 This shows the user flow diagram for the views of the application. Each view has a bulleted list of actions that the user can perform from the view, and arrows are shown for actions that cause view transitions. A modal is a view within a view.
 
-[Download our interactive wireframe to see how views change and interact with each other.](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/interactive-wireframe.pdf)
+[Download our interactive wireframe to see how views change and interact with each other.](/interactive-wireframe.pdf)
 
 Here are some sample wireframes corresponding to the views in the user flow diagram:
 
