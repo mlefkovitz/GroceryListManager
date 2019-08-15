@@ -1,6 +1,6 @@
 Design 1
 ========
-![image of design 1](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Design-Individual/ethomas32/design.png)
+![image of design 1](/../Design-Individual/ethomas32/design.png)
 
 * Pros
     * Simple and concise.
