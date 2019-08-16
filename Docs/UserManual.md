@@ -22,9 +22,9 @@ The GroceryListManager application will handle the following:
  - **Users will have the ability to check items within a grocery list**
  - **Users will also be able to remove all check-off at once from Grocery list**  
  - **Users will be able to select Items categorized by Item Type from hierarchical list to:**
-	-     Add Item to the selected Grocery List
-	-     Delete Item from the selected Grocery List
-	-     Change the quantity of the Item within the selected Grocery List
+	- **Add Item to the selected Grocery List**
+	- **Delete Item from the selected Grocery List**
+	- **Change the quantity of the Item within the selected Grocery List**
 
 ## 3.0 Android's environment #
 
