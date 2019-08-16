@@ -3,7 +3,7 @@
 **Author**: Team 61
 
 ## 1 Use Case Diagram
-![image of design 1](https://github.gatech.edu/gt-omscs-se-2016fall/6300Fall16Team61/blob/master/GroupProject/Docs/use-case-diagram.png)
+![image of design 1](./use-case-diagram.png)
 
 ## 2 Use Case Descriptions
 
