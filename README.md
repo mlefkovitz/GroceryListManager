@@ -17,9 +17,9 @@ The GroceryListManager application will handle the following:
  - **Users will have the ability to check items within a grocery list**
  - **Users will also be able to remove all check-off at once from Grocery list**  
  - **Users will be able to select Items categorized by Item Type from hierarchical list to:**
-	-     Add Item to the selected Grocery List
-	-     Delete Item from the selected Grocery List
-	-     Change the quantity of the Item within the selected Grocery List
+	-     **Add Item to the selected Grocery List**
+	-     **Delete Item from the selected Grocery List**
+	-     **Change the quantity of the Item within the selected Grocery List**
 
 ## 3.0 GroceryListManager application ##
 
@@ -36,13 +36,13 @@ Create a list by typing a list name into the box and selecting the Add button.
 In the photos below we create a new list named "My List":
 
 
-![Enter List Name](./UserManualImages/Create-New-Grocery-List1.PNG)
+![Enter List Name](./Docs/UserManualImages/Create-New-Grocery-List1.PNG)
 
 
-![Click Add](./UserManualImages/Create-New-Grocery-List2.PNG)
+![Click Add](./Docs/UserManualImages/Create-New-Grocery-List2.PNG)
 
 
-![New List Appears](./UserManualImages/Create-New-Grocery-List3.PNG)
+![New List Appears](./Docs/UserManualImages/Create-New-Grocery-List3.PNG)
 
 #### 3.1.2 Select a list  
 
@@ -60,11 +60,11 @@ If you're ready to change the name of the list, use the Rename button, at the to
 In the photos below we change the name of "My List" to "The List":
 
 
-![Current List Name](./UserManualImages/Rename-Grocery-List1.PNG)
+![Current List Name](./Docs/UserManualImages/Rename-Grocery-List1.PNG)
 
-![Edit The List Name](./UserManualImages/Rename-Grocery-List2.PNG)
+![Edit The List Name](./Docs/UserManualImages/Rename-Grocery-List2.PNG)
 
-![Click Rename once List Name is Ready](./UserManualImages/Rename-Grocery-List3.PNG)
+![Click Rename once List Name is Ready](./Docs/UserManualImages/Rename-Grocery-List3.PNG)
 
 #### 3.2.1 Delete the list
 
@@ -76,51 +76,51 @@ When you create a new list it will be empty. Use the Add button to add a new ite
 
 When you click Add you'll be asked to select from a given list of items.
 
-![Select an Item to Add It](./UserManualImages/Add-Item-To-Grocery-List.PNG)
+![Select an Item to Add It](./Docs/UserManualImages/Add-Item-To-Grocery-List.PNG)
 
 When you're ready to add an item, click on it and you'll be brought back to your list to select the quantity.
 
-![Select Item Quantity](./UserManualImages/Select-Item-Quantity.PNG)
+![Select Item Quantity](./Docs/UserManualImages/Select-Item-Quantity.PNG)
 
 
 #### 3.2.2.1 Search for an item by name
 
 You can use the search box to narrow down the list of items presented. Enter the name of the item you're looking for and hit search.  
 
-![Search for Items](./UserManualImages/Search-For-Items-To-Add-To-Grocery-List.PNG)
+![Search for Items](./Docs/UserManualImages/Search-For-Items-To-Add-To-Grocery-List.PNG)
 
 
 #### 3.2.2.2 Add a new item to the list of items
 
 If you can't find the item you're looking for, you can add it using the Add button.
 
-![Items Not Found?](./UserManualImages/Search-Item-Not-Found.PNG)
+![Items Not Found?](./Docs/UserManualImages/Search-Item-Not-Found.PNG)
 
 You'll be asked to select an item type. Once selected, the item will be added your grocery list and you'll be brought back to your list to select the quantity.
 
-![Select Item Type](./UserManualImages/Select-Item-Type.PNG)
+![Select Item Type](./Docs/UserManualImages/Select-Item-Type.PNG)
 
 Items added this way will be available to all grocery lists. 
 
-![Item available to all grocery lists](./UserManualImages/Item-Added-To-Item-List.PNG)
+![Item available to all grocery lists](./Docs/UserManualImages/Item-Added-To-Item-List.PNG)
 
 #### 3.2.3 Change an Item's Quantity
 
 Click on an item to change its quantity.
 
-![ChangeItem Quantity](./UserManualImages/Select-Item-Quantity.PNG)
+![ChangeItem Quantity](./Docs/UserManualImages/Select-Item-Quantity.PNG)
 
 #### 3.2.4 Delete an Item
 
 Click on an item to launch the prompt to delete the item.
 
-![Delete Item](./UserManualImages/Select-Item-Quantity.PNG)
+![Delete Item](./Docs/UserManualImages/Select-Item-Quantity.PNG)
 
 #### 3.2.5  Check an Item
 
 Click on an item's checkbox to check the item.
 
-![Check an Item](./UserManualImages/Item-Checked.PNG)
+![Check an Item](./Docs/UserManualImages/Item-Checked.PNG)
 
 #### 3.2.6 Clear All Check Boxes
 
