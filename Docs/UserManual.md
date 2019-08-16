@@ -1,11 +1,11 @@
 # **Manual** #
 ### **Author - Team 61** #
-# GroceryListManager - Management System for Grocery List #
+# GroceryListManager - Management System for Grocery Lists #
 
 
 ## 1.0 History of the application #
 
-Brad and Janet, have requested a new grocery list application. They have been unhappy with the existing grocery list applications.  
+Brad and Janet have requested a new grocery list application. They have been unhappy with existing grocery list applications.  
 
 After the review of our team's submission of our design based on the requirements provided by Brad and Janet.  They both are convinced to commission team 61 to produce the GroceryListManager.
 
@@ -22,9 +22,9 @@ The GroceryListManager application will handle the following:
  - **Users will have the ability to check items within a grocery list**
  - **Users will also be able to remove all check-off at once from Grocery list**  
  - **Users will be able to select Items categorized by Item Type from hierarchical list to:**
-  -     Add Item to the selected Grocery List
-  -     Delete Item from the selected Grocery List
-  -     Change the quantity of the Item within the selected Grocery List
+	-     Add Item to the selected Grocery List
+	-     Delete Item from the selected Grocery List
+	-     Change the quantity of the Item within the selected Grocery List
 
 ## 3.0 Android's environment #
 
